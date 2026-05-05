@@ -1,0 +1,98 @@
+"use client";
+
+import { useState } from "react";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
+
+const links = [
+  { href: "/program", label: "Program" },
+  { href: "/instructors", label: "Instructors" },
+  { href: "/pricing", label: "Pricing" },
+  { href: "/cohorts", label: "Cohorts" },
+  { href: "/faq", label: "FAQ" },
+];
+
+export default function Nav() {
+  const [open, setOpen] = useState(false);
+  const pathname = usePathname();
+
+  return (
+    <header className="sticky top-0 z-50 bg-forest-950/90 backdrop-blur-md border-b border-forest-700">
+      <nav className="max-w-6xl mx-auto px-4 sm:px-6 flex items-center justify-between h-16">
+        {/* Logo */}
+        <Link
+          href="/"
+          className="flex items-center gap-2 font-serif font-bold text-xl tracking-tight text-cream hover:text-gold transition-colors"
+        >
+          <span className="text-gold">RAP</span>
+          <span className="hidden sm:block text-muted text-sm font-sans font-normal">
+            Responsible AI Professional
+          </span>
+        </Link>
+
+        {/* Desktop links */}
+        <div className="hidden md:flex items-center gap-6">
+          {links.map((l) => (
+            <Link
+              key={l.href}
+              href={l.href}
+              className={`text-sm transition-colors ${
+                pathname.startsWith(l.href)
+                  ? "text-cream font-medium"
+                  : "text-muted hover:text-cream"
+              }`}
+            >
+              {l.label}
+            </Link>
+          ))}
+          <Link
+            href="/enroll"
+            className="ml-2 px-4 py-2 bg-gold text-forest-950 text-sm font-semibold rounded hover:bg-yellow-400 transition-colors"
+          >
+            Enroll
+          </Link>
+        </div>
+
+        {/* Mobile hamburger */}
+        <button
+          className="md:hidden text-muted hover:text-cream p-2"
+          onClick={() => setOpen(!open)}
+          aria-label="Toggle menu"
+        >
+          {open ? (
+            <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+            </svg>
+          ) : (
+            <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+            </svg>
+          )}
+        </button>
+      </nav>
+
+      {/* Mobile menu */}
+      {open && (
+        <div className="md:hidden border-t border-forest-700 bg-forest-950 px-4 py-4 flex flex-col gap-4">
+          {links.map((l) => (
+            <Link
+              key={l.href}
+              href={l.href}
+              className="text-muted hover:text-cream transition-colors py-1"
+              onClick={() => setOpen(false)}
+            >
+              {l.label}
+            </Link>
+          ))}
+          <Link
+            href="/enroll"
+            className="mt-2 px-4 py-2 bg-gold text-forest-950 text-sm font-semibold rounded text-center"
+            onClick={() => setOpen(false)}
+          >
+            Enroll
+          </Link>
+        </div>
+      )}
+    </header>
+  );
+}
