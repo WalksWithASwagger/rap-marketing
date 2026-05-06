@@ -3,6 +3,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import BcAiLogo from "./BcAiLogo";
 
 const links = [
   { href: "/program", label: "Program" },
@@ -17,15 +18,16 @@ export default function Nav() {
   const pathname = usePathname();
 
   return (
-    <header className="sticky top-0 z-50 bg-forest-950/90 backdrop-blur-md border-b border-forest-700">
+    <header className="sticky top-0 z-50 bg-forest-950/95 backdrop-blur-md border-b border-forest-700">
       <nav className="max-w-6xl mx-auto px-4 sm:px-6 flex items-center justify-between h-16">
-        {/* Logo */}
-        <Link
-          href="/"
-          className="flex items-center gap-2 font-serif font-bold text-xl tracking-tight text-cream hover:text-gold transition-colors"
-        >
-          <span className="text-gold">RAP</span>
-          <span className="hidden sm:block text-muted text-sm font-sans font-normal">
+        {/* Logo — BC+AI | RAP */}
+        <Link href="/" className="flex items-center gap-3 group">
+          <BcAiLogo width={52} className="opacity-90 group-hover:opacity-100 transition-opacity" />
+          <span className="text-forest-600 text-lg font-light select-none">|</span>
+          <span className="font-serif font-bold text-lg tracking-tight text-gold group-hover:text-yellow-300 transition-colors">
+            RAP
+          </span>
+          <span className="hidden sm:block text-muted text-xs font-sans font-normal leading-tight max-w-[130px]">
             Responsible AI Professional
           </span>
         </Link>
@@ -47,9 +49,9 @@ export default function Nav() {
           ))}
           <Link
             href="/enroll"
-            className="ml-2 px-4 py-2 bg-gold text-forest-950 text-sm font-semibold rounded hover:bg-yellow-400 transition-colors"
+            className="ml-2 px-4 py-2 bg-orange text-cream text-sm font-semibold rounded hover:bg-orange/80 transition-colors glow-box"
           >
-            Enroll
+            Enroll Now
           </Link>
         </div>
 
@@ -86,10 +88,10 @@ export default function Nav() {
           ))}
           <Link
             href="/enroll"
-            className="mt-2 px-4 py-2 bg-gold text-forest-950 text-sm font-semibold rounded text-center"
+            className="mt-2 px-4 py-2 bg-orange text-cream text-sm font-semibold rounded text-center"
             onClick={() => setOpen(false)}
           >
-            Enroll
+            Enroll Now
           </Link>
         </div>
       )}

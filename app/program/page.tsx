@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
+import ScrollReveal from "@/components/ScrollReveal";
 
 export const metadata: Metadata = {
   title: "Program | RAP Certification",
@@ -14,7 +15,7 @@ const weeks = [
     title: "Foundations",
     theme: "Technical Grounding + The Accuracy Problem",
     color: "#4a6fa5",
-    image: "01a-martin-forest-network.png",
+    image: "01c-martin-deep-forest.png",
     about:
       "Before you can govern AI, you need to understand it. Week 1 demystifies the technology — not at the level of writing code, but at the level of making decisions. You'll learn how AI systems actually work, why they sound confident when they're wrong, and what the global ethics frameworks say about it.",
     topics: [
@@ -35,7 +36,7 @@ const weeks = [
     title: "Core Ethics",
     theme: "Bias, Privacy & Ownership",
     color: "#2d7d8a",
-    image: "02a-cohort-spotlight.png",
+    image: "02c-sarah-twilight-wisdom.png",
     about:
       "The three pillars of AI ethics in practice. Not principles — applications. You'll learn to identify bias in algorithmic systems, navigate privacy frameworks, and understand who owns AI inputs and outputs. These aren't abstract concerns — they're the issues landing organizations in court.",
     topics: [
@@ -149,7 +150,7 @@ export default function ProgramPage() {
           <section key={w.week} className="scroll-mt-20">
             <div className={`grid grid-cols-1 lg:grid-cols-2 gap-12 items-start ${idx % 2 === 1 ? "lg:flex-row-reverse" : ""}`}>
               {/* Text side */}
-              <div className={idx % 2 === 1 ? "lg:order-2" : ""}>
+              <ScrollReveal className={idx % 2 === 1 ? "lg:order-2" : ""}>
                 <p
                   className="text-sm font-semibold uppercase tracking-widest mb-2"
                   style={{ color: w.color }}
@@ -194,10 +195,10 @@ export default function ProgramPage() {
                     <span className="text-teal">◆</span> Interactive: {w.widget}
                   </span>
                 </div>
-              </div>
+              </ScrollReveal>
 
-              {/* Image side */}
-              <div className={`rounded-xl overflow-hidden border border-forest-600 ${idx % 2 === 1 ? "lg:order-1" : ""}`}>
+              {/* Image side — full bleed, no border */}
+              <ScrollReveal delay={120} className={`rounded-xl overflow-hidden ${idx % 2 === 1 ? "lg:order-1" : ""}`}>
                 <div className="relative w-full" style={{ aspectRatio: "4/3" }}>
                   <Image
                     src={`/images/${w.image}`}
@@ -205,8 +206,9 @@ export default function ProgramPage() {
                     fill
                     className="object-cover"
                   />
+                  <div className="absolute inset-0 bg-gradient-to-t from-forest-900/40 to-transparent" />
                 </div>
-              </div>
+              </ScrollReveal>
             </div>
           </section>
         ))}
@@ -251,13 +253,13 @@ export default function ProgramPage() {
         <div className="flex flex-wrap justify-center gap-4">
           <Link
             href="/enroll"
-            className="px-8 py-4 bg-gold text-forest-950 font-semibold rounded hover:bg-yellow-400 transition-colors"
+            className="px-8 py-4 bg-orange text-cream font-bold rounded-lg hover:bg-orange/85 transition-colors glow-box"
           >
-            Enroll Now
+            Enroll Now →
           </Link>
           <Link
             href="/pricing"
-            className="px-8 py-4 border border-forest-500 text-accent font-semibold rounded hover:border-accent transition-colors"
+            className="px-8 py-4 border border-forest-500 text-growth font-semibold rounded-lg hover:border-growth transition-colors"
           >
             View Pricing
           </Link>

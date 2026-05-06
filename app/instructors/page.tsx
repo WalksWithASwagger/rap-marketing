@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
+import ScrollReveal from "@/components/ScrollReveal";
 
 export const metadata: Metadata = {
   title: "Instructors | RAP Certification",
@@ -11,7 +12,7 @@ const instructors = [
   {
     name: "Kris Krüg",
     role: "Program Lead",
-    image: "03a-team-triangle.png",
+    image: "instructor-kk.png",
     bio: [
       "National Geographic photographer and 18-year Getty Images contributor who bridges creative and technical worlds. TED speaker. SXSW Interactive Advisory Board veteran (11+ years). CTO of Indigenomics Institute.",
       "Founded Vancouver AI meetup, growing it from 80 people to 250+ monthly attendees with 25+ consecutive Indigenous ceremony openings. Former CBC 'Sandboxing AI' host. Co-authored BC Studies academic paper on grassroots AI communities. Named to Vancouver Magazine Power 50 (2025).",
@@ -30,7 +31,7 @@ const instructors = [
   {
     name: "Martin Lopatka",
     role: "Curriculum Developer",
-    image: "06a-frameworks-integrated-venn.png",
+    image: "01c-martin-deep-forest.png",
     bio: [
       "PhD in Forensic Statistics, M.Sc. in AI. Mozilla alumni with production ML systems experience.",
       "Deep expertise in responsible AI assessment frameworks, model governance, and regulatory alignment. Brings real-world experience deploying and auditing AI systems at scale.",
@@ -48,7 +49,7 @@ const instructors = [
   {
     name: "Sarah Downey",
     role: "Instructor",
-    image: "09a-gpt-living-seed.png",
+    image: "02c-sarah-twilight-wisdom.png",
     bio: [
       "AI consultant and strategist based in Victoria with 20+ years in nonprofit and social impact leadership.",
       "Hosts facilitated conversations for nonprofit leaders on ethical AI governance. Course creator focused on helping mission-driven organizations adopt AI responsibly.",
@@ -86,20 +87,23 @@ export default function InstructorsPage() {
 
       {/* Team art tile */}
       <section className="max-w-6xl mx-auto px-4 sm:px-6 mb-20">
-        <div className="rounded-xl overflow-hidden border border-forest-600">
+        <div className="rounded-2xl overflow-hidden">
           <div className="relative w-full" style={{ aspectRatio: "16/5" }}>
             <Image
-              src="/images/03a-team-triangle.png"
-              alt="RAP Instructor Team"
+              src="/images/03b-team-connected-minds.png"
+              alt="RAP Instructor Team — connected minds"
               fill
-              className="object-cover object-top"
+              className="object-cover object-center"
               priority
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-forest-900/80 to-transparent" />
-            <div className="absolute bottom-0 left-0 right-0 p-6 sm:p-10">
-              <p className="text-cream font-serif text-xl sm:text-2xl font-bold">
-                Three perspectives. One program.
-              </p>
+            <div className="absolute inset-0 bg-gradient-to-r from-forest-900/80 via-forest-900/40 to-transparent" />
+            <div className="absolute inset-0 flex items-center">
+              <div className="px-8 sm:px-12">
+                <p className="text-growth text-xs font-semibold uppercase tracking-[0.2em] mb-3">The Team</p>
+                <p className="text-cream font-serif text-2xl sm:text-3xl font-bold max-w-md">
+                  Three perspectives. One program. Zero vendor agendas.
+                </p>
+              </div>
             </div>
           </div>
         </div>
@@ -109,26 +113,25 @@ export default function InstructorsPage() {
       <div className="max-w-6xl mx-auto px-4 sm:px-6 pb-24 space-y-24">
         {instructors.map((inst, idx) => (
           <section key={inst.name}>
-            <div className={`grid grid-cols-1 lg:grid-cols-2 gap-12 items-start ${idx % 2 === 1 ? "" : ""}`}>
-              {/* Image */}
-              <div className={`rounded-xl overflow-hidden border border-forest-600 ${idx % 2 === 1 ? "lg:order-2" : ""}`}>
-                <div className="relative w-full" style={{ aspectRatio: "4/3" }}>
-                  <Image
-                    src={`/images/${inst.image}`}
-                    alt={inst.name}
-                    fill
-                    className="object-cover"
-                  />
-                  <div className="absolute bottom-0 left-0 right-0 p-5 bg-gradient-to-t from-forest-900/90 to-transparent">
-                    <p className="text-cream font-serif font-bold text-2xl">{inst.name}</p>
-                    <p className="text-gold text-sm font-semibold uppercase tracking-wider">{inst.role}</p>
-                  </div>
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-0 items-stretch rounded-2xl overflow-hidden border border-forest-600">
+              {/* Image — full bleed, no padding */}
+              <div className={`relative min-h-[360px] lg:min-h-0 ${idx % 2 === 1 ? "lg:order-2" : ""}`}>
+                <Image
+                  src={`/images/${inst.image}`}
+                  alt={inst.name}
+                  fill
+                  className="object-cover"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-forest-900/90 via-forest-900/20 to-transparent" />
+                <div className="absolute bottom-0 left-0 right-0 p-6">
+                  <p className="text-gold text-xs font-semibold uppercase tracking-widest mb-1">{inst.role}</p>
+                  <p className="text-cream font-serif font-bold text-2xl">{inst.name}</p>
                 </div>
               </div>
 
               {/* Content */}
-              <div className={idx % 2 === 1 ? "lg:order-1" : ""}>
-                <p className="text-accent text-sm font-semibold uppercase tracking-widest mb-2">
+              <ScrollReveal className={`bg-forest-800 p-8 sm:p-10 flex flex-col justify-center ${idx % 2 === 1 ? "lg:order-1" : ""}`}>
+                <p className="text-growth text-xs font-semibold uppercase tracking-[0.2em] mb-2">
                   {inst.role}
                 </p>
                 <h2 className="font-serif text-3xl text-cream font-bold mb-6">{inst.name}</h2>
@@ -149,7 +152,7 @@ export default function InstructorsPage() {
                     </span>
                   ))}
                 </div>
-              </div>
+              </ScrollReveal>
             </div>
           </section>
         ))}
@@ -183,13 +186,13 @@ export default function InstructorsPage() {
         <div className="flex flex-wrap justify-center gap-4">
           <Link
             href="/enroll"
-            className="px-8 py-4 bg-gold text-forest-950 font-semibold rounded hover:bg-yellow-400 transition-colors"
+            className="px-8 py-4 bg-orange text-cream font-bold rounded-lg hover:bg-orange/85 transition-colors glow-box"
           >
-            Enroll Now
+            Enroll Now →
           </Link>
           <Link
             href="/program"
-            className="px-8 py-4 border border-forest-500 text-accent font-semibold rounded hover:border-accent transition-colors"
+            className="px-8 py-4 border border-forest-500 text-growth font-semibold rounded-lg hover:border-growth transition-colors"
           >
             See the Curriculum
           </Link>

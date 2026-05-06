@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
+import ScrollReveal from "@/components/ScrollReveal";
 
 export const metadata: Metadata = {
   title: "Pricing | RAP Certification",
@@ -86,18 +87,18 @@ export default function PricingPage() {
       {/* Pricing tiers */}
       <section className="max-w-6xl mx-auto px-4 sm:px-6 pb-20">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-          {tiers.map((tier) => (
+          {tiers.map((tier, i) => (
+            <ScrollReveal key={tier.name} delay={i * 80}>
             <div
-              key={tier.name}
-              className={`rounded-xl p-6 border flex flex-col ${
+              className={`rounded-xl p-6 border flex flex-col h-full ${
                 tier.highlight
-                  ? "border-gold bg-forest-800"
+                  ? "border-cyan bg-forest-800 glow-box"
                   : "border-forest-600 bg-forest-800/50"
               }`}
             >
               {tier.highlight && (
-                <span className="self-start px-2 py-0.5 bg-gold text-forest-950 text-xs font-semibold rounded mb-3">
-                  Best Value
+                <span className="self-start px-2 py-0.5 bg-cyan text-forest-950 text-xs font-bold rounded mb-3">
+                  Best Value ✦
                 </span>
               )}
               <p className="text-muted text-sm mb-2">{tier.name}</p>
@@ -114,6 +115,7 @@ export default function PricingPage() {
               </ul>
               <p className="text-muted text-xs border-t border-forest-700 pt-3 mt-auto">{tier.note}</p>
             </div>
+            </ScrollReveal>
           ))}
         </div>
       </section>
@@ -223,13 +225,13 @@ export default function PricingPage() {
         <div className="flex flex-wrap justify-center gap-4">
           <Link
             href="/enroll"
-            className="px-8 py-4 bg-gold text-forest-950 font-semibold rounded hover:bg-yellow-400 transition-colors"
+            className="px-8 py-4 bg-orange text-cream font-bold rounded-lg hover:bg-orange/85 transition-colors glow-box"
           >
-            Enroll Now
+            Enroll Now →
           </Link>
           <Link
             href="/cohorts"
-            className="px-8 py-4 border border-forest-500 text-accent font-semibold rounded hover:border-accent transition-colors"
+            className="px-8 py-4 border border-forest-500 text-growth font-semibold rounded-lg hover:border-growth transition-colors"
           >
             View 2026 Cohorts
           </Link>
