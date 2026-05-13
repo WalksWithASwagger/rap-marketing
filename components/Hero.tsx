@@ -26,7 +26,7 @@ interface Props {
   cta?: CTA;
   ctaSecondary?: CTA;
   trustStrip?: string;
-  height?: "full" | "70";
+  height?: "full" | "70" | "50";
   generativeAccent?: boolean;
   objectPosition?: string;
 }
@@ -51,7 +51,9 @@ export default function Hero({
   const heightCls =
     height === "full"
       ? "h-[85vh] md:h-screen min-h-[560px] max-h-[1100px]"
-      : "h-[70vh] min-h-[500px]";
+      : height === "50"
+        ? "h-[50vh] min-h-[400px]"
+        : "h-[70vh] min-h-[500px]";
 
   return (
     <section className={`relative overflow-hidden ${heightCls}`}>
