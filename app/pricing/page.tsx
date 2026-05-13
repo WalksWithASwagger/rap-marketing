@@ -113,10 +113,10 @@ export default function PricingPage() {
             <h2 className="font-serif text-3xl sm:text-5xl text-cream font-semibold mb-6 leading-tight">
               Not a member yet?
               <br />
-              It&apos;s $50/year and covers half your tuition.
+              Join BC + AI for $340 and save $410 on RAP.
             </h2>
             <p className="text-cream/75 max-w-2xl mx-auto mb-10 leading-relaxed">
-              BC + AI Ecosystem Association membership unlocks member pricing on RAP and every program after it — plus Vancouver AI Meetups, special interest groups, and the Friday office hours.
+              BC + AI Ecosystem Association membership ($340/year) drops RAP from $1,500 to $750 — a net $410 in your pocket — and unlocks member pricing on every program after it, plus Vancouver AI Meetups, special interest groups, and Friday office hours.
             </p>
             <div className="flex justify-center">
               <MagneticButton
