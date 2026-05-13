@@ -1,6 +1,12 @@
 "use client";
 
-import { motion, useInView, useMotionValue, useSpring, useTransform } from "motion/react";
+import {
+  animate,
+  motion,
+  useInView,
+  useMotionValue,
+  useTransform,
+} from "motion/react";
 import { useEffect, useRef, useState } from "react";
 import useReducedMotion from "@/lib/useReducedMotion";
 
@@ -23,42 +29,36 @@ export default function AnimatedCounter({
 }: Props) {
   const reduced = useReducedMotion();
   const ref = useRef<HTMLSpanElement>(null);
-  const inView = useInView(ref, { once: true, margin: "-20% 0px" });
+  const inView = useInView(ref, { once: true, margin: "0px 0px -10% 0px" });
 
   const mv = useMotionValue(0);
-  const spring = useSpring(mv, {
-    stiffness: 60,
-    damping: 18,
-    mass: 0.5,
-    duration: duration / 1000,
-  });
-
   const [display, setDisplay] = useState(reduced ? target : 0);
 
-  // Glow strength tracks the "velocity" toward target — pulse during the count.
-  const glowAlpha = useTransform(spring, (v) => {
-    if (!glow) return 0;
+  const textShadow = useTransform(mv, (v) => {
+    if (!glow) return "none";
     const t = Math.max(0, Math.min(1, v / Math.max(target, 1)));
-    // Peak around mid animation, taper to 0 at rest.
-    return 0.7 * Math.sin(t * Math.PI);
+    const a = 0.7 * Math.sin(t * Math.PI);
+    return `0 0 ${10 + a * 30}px rgba(0, 221, 204, ${a.toFixed(3)})`;
   });
-  const textShadow = useTransform(
-    glowAlpha,
-    (a) => `0 0 ${10 + a * 30}px rgba(0, 221, 204, ${a.toFixed(3)})`
-  );
 
+  // Drive a tween on the motion value, render its current rounded integer.
   useEffect(() => {
     if (reduced) {
+      mv.set(target);
       setDisplay(target);
       return;
     }
-    if (inView) mv.set(target);
-  }, [inView, mv, target, reduced]);
+    if (!inView) return;
+    const controls = animate(mv, target, {
+      duration: duration / 1000,
+      ease: [0.16, 1, 0.3, 1],
+    });
+    return () => controls.stop();
+  }, [inView, mv, target, reduced, duration]);
 
   useEffect(() => {
-    const unsub = spring.on("change", (v) => setDisplay(Math.round(v)));
-    return () => unsub();
-  }, [spring]);
+    return mv.on("change", (v) => setDisplay(Math.round(v)));
+  }, [mv]);
 
   return (
     <motion.span

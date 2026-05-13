@@ -130,8 +130,8 @@ export default function Home() {
     <>
       {/* 1 — Cinematic hero */}
       <Hero
-        image="/images/10a-cta-bold-hero.png"
-        imageAlt="A leader stands at the edge of a forest at first light"
+        image="/images/03b-team-connected-minds.png"
+        imageAlt="A network of connected minds, glowing at the edges of a forest at first light"
         eyebrow="Responsible AI Professional · Cohort 1"
         headline="Lead the room when AI walks in."
         sub="A 4-week certification for the people who have to answer for the AI decisions their organizations make."
@@ -381,13 +381,13 @@ export default function Home() {
       {/* 8 — Closing CTA */}
       <section className="relative h-[70vh] min-h-[500px] overflow-hidden">
         <Image
-          src="/images/10b-cta-dawn-breaking.png"
-          alt="Dawn breaking over a forest"
+          src="/images/07c-alumni-forest-canopy.png"
+          alt="Forest canopy at dawn"
           fill
           sizes="100vw"
           loading="lazy"
-          placeholder={meta["/images/10b-cta-dawn-breaking.png"]?.blurDataURL ? "blur" : undefined}
-          blurDataURL={meta["/images/10b-cta-dawn-breaking.png"]?.blurDataURL}
+          placeholder={meta["/images/07c-alumni-forest-canopy.png"]?.blurDataURL ? "blur" : undefined}
+          blurDataURL={meta["/images/07c-alumni-forest-canopy.png"]?.blurDataURL}
           className="object-cover"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-forest-950/95 via-forest-950/55 to-forest-950/20" />
@@ -399,7 +399,7 @@ export default function Home() {
             >
               The first cohort starts May 22.
               <br />
-              <span className="text-cyan">Twenty-five seats left.</span>
+              <span className="text-cyan">A few seats left.</span>
             </h2>
             <div className="flex justify-center">
               <MagneticButton href={ENROLL_URL} external variant="primary">
