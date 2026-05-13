@@ -11,9 +11,23 @@ type Meta = Record<string, { blurDataURL?: string }>;
 const meta = imageMeta as Meta;
 
 export const metadata: Metadata = {
-  title: "Cohorts | RAP Certification",
+  title: "Cohorts",
   description:
     "Three RAP certification cohorts in 2026 — online pilot in May, refined online in Sep, in-person intensive in October.",
+  alternates: { canonical: "/cohorts" },
+  openGraph: {
+    title: "RAP 2026 Cohorts",
+    description:
+      "May online pilot. September refined online. October in-person intensive.",
+    url: "/cohorts",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "RAP 2026 Cohorts",
+    description:
+      "May online pilot. September refined online. October in-person intensive.",
+  },
 };
 
 const ENROLL_URL = "https://rap-course-delta.vercel.app/enroll/";

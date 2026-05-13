@@ -5,8 +5,20 @@ import { moduleBySlug } from "@/data/modules";
 const m = moduleBySlug("m2")!;
 
 export const metadata: Metadata = {
-  title: `${m.number}: ${m.title} | RAP`,
+  title: `${m.number}: ${m.title}`,
   description: m.argument,
+  alternates: { canonical: m.href },
+  openGraph: {
+    title: `${m.number}: ${m.title}`,
+    description: m.argument,
+    url: m.href,
+    type: "article",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: `${m.number}: ${m.title}`,
+    description: m.argument,
+  },
 };
 
 export default function M2Page() {

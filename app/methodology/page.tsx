@@ -9,9 +9,23 @@ type Meta = Record<string, { blurDataURL?: string }>;
 const meta = imageMeta as Meta;
 
 export const metadata: Metadata = {
-  title: "Methodology | RAP Certification",
+  title: "Methodology",
   description:
     "How RAP teaches — arguments over content, frameworks over heuristics, artifacts over abstractions, cohort over MOOC.",
+  alternates: { canonical: "/methodology" },
+  openGraph: {
+    title: "How RAP teaches",
+    description:
+      "Arguments over content. Frameworks over heuristics. Artifacts over abstractions. Cohort over MOOC.",
+    url: "/methodology",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "How RAP teaches",
+    description:
+      "Arguments over content. Frameworks over heuristics. Artifacts over abstractions. Cohort over MOOC.",
+  },
 };
 
 const principles = [

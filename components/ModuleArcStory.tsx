@@ -126,14 +126,15 @@ export default function ModuleArcStory({ chapters }: Props) {
               transition={{ duration: 0.8, ease: EASE }}
               className="relative min-h-screen flex flex-col justify-center px-6 sm:px-12 py-24"
             >
-              {/* Pinned massive numeral */}
+              {/* Pinned massive decorative numeral (background ornament) */}
               <span
-                aria-hidden
-                className="absolute right-0 lg:-right-6 top-12 lg:top-20 font-serif font-semibold text-cream/[0.06] leading-none pointer-events-none select-none"
+                aria-hidden="true"
+                role="presentation"
+                data-numeral={c.numeral}
+                className="arc-numeral absolute right-0 lg:-right-6 top-12 lg:top-20 font-serif font-semibold leading-none pointer-events-none select-none"
                 style={{ fontSize: "clamp(8rem, 12vw, 16rem)" }}
-              >
-                {c.numeral}
-              </span>
+              />
+
 
               <div className="relative">
                 <p className="text-cyan text-xs font-semibold uppercase tracking-[0.28em] mb-5">

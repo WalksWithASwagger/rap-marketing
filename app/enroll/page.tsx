@@ -9,16 +9,32 @@ const meta = imageMeta as Meta;
 const REDIRECT_URL = "https://rap-course-delta.vercel.app/enroll/";
 
 export const metadata: Metadata = {
-  title: "Enroll | RAP Certification",
+  title: "Enroll",
   description:
     "Heading to the RAP enrollment form. Same program, same team, hosted on the course platform.",
+  alternates: { canonical: "/enroll" },
+  openGraph: {
+    title: "Enroll in RAP",
+    description:
+      "Same program, same team — heading to the enrollment form on the course platform.",
+    url: "/enroll",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Enroll in RAP",
+    description:
+      "Same program, same team — heading to the enrollment form on the course platform.",
+  },
 };
 
 export default function EnrollPage() {
   const bg = "/images/10c-cta-path-forward.png";
   return (
     <>
-      <meta httpEquiv="refresh" content={`3;url=${REDIRECT_URL}`} />
+      <noscript>
+        <meta httpEquiv="refresh" content={`3;url=${REDIRECT_URL}`} />
+      </noscript>
       <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-forest-950">
         <div className="absolute inset-0">
           <Image

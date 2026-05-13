@@ -120,7 +120,6 @@ export default function PricingToggle({
           className="relative w-14 h-7 rounded-full transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-cyan"
           style={{ backgroundColor: isMember ? "#00DDCC" : "#3a6644" }}
           aria-label="Toggle BC + AI membership pricing"
-          aria-pressed={isMember}
           role="switch"
           aria-checked={isMember}
         >

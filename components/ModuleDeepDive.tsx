@@ -191,10 +191,13 @@ export default function ModuleDeepDive({ module: m }: Props) {
             </p>
           </ScrollReveal>
 
-          <ol className="space-y-8">
+          <ol className="space-y-8 list-none p-0">
             {m.quizSamples.map((q, i) => (
-              <ScrollReveal key={i} delay={i * 80}>
-                <li className="rounded-2xl border border-forest-700/60 bg-forest-900/60 p-6 sm:p-8">
+              <li
+                key={i}
+                className="rounded-2xl border border-forest-700/60 bg-forest-900/60 p-6 sm:p-8"
+              >
+                <ScrollReveal delay={i * 80}>
                   <p className="text-cyan/80 text-xs uppercase tracking-[0.28em] mb-3">
                     Question {String(i + 1).padStart(2, "0")}
                   </p>
@@ -207,15 +210,15 @@ export default function ModuleDeepDive({ module: m }: Props) {
                         key={j}
                         className="flex items-start gap-3 rounded-lg border border-forest-700/40 bg-forest-900/40 px-4 py-3 text-cream/80 text-sm leading-snug"
                       >
-                        <span className="text-cyan/70 font-mono text-xs mt-0.5">
+                        <span className="text-cyan font-mono text-xs mt-0.5">
                           {String.fromCharCode(97 + j)})
                         </span>
                         <span>{opt}</span>
                       </li>
                     ))}
                   </ul>
-                </li>
-              </ScrollReveal>
+                </ScrollReveal>
+              </li>
             ))}
           </ol>
         </div>
