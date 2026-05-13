@@ -1,6 +1,8 @@
 "use client";
 
-import { useEffect, useRef, ReactNode } from "react";
+import { motion } from "motion/react";
+import { ReactNode } from "react";
+import useReducedMotion from "@/lib/useReducedMotion";
 
 interface Props {
   children: ReactNode;
@@ -9,36 +11,30 @@ interface Props {
   direction?: "up" | "right";
 }
 
-export default function ScrollReveal({ children, delay = 0, className = "", direction = "up" }: Props) {
-  const ref = useRef<HTMLDivElement>(null);
+const EASE = [0.16, 1, 0.3, 1] as const;
 
-  useEffect(() => {
-    const el = ref.current;
-    if (!el) return;
+export default function ScrollReveal({
+  children,
+  delay = 0,
+  className = "",
+  direction = "up",
+}: Props) {
+  const reduced = useReducedMotion();
 
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          if (delay) {
-            setTimeout(() => el.classList.add("visible"), delay);
-          } else {
-            el.classList.add("visible");
-          }
-          observer.unobserve(el);
-        }
-      },
-      { threshold: 0.1 }
-    );
-
-    observer.observe(el);
-    return () => observer.disconnect();
-  }, [delay]);
-
-  const cls = direction === "right" ? "reveal-right" : "reveal";
+  const initial =
+    direction === "right"
+      ? { opacity: 0, x: -28 }
+      : { opacity: 0, y: 28 };
 
   return (
-    <div ref={ref} className={`${cls} ${className}`}>
+    <motion.div
+      initial={reduced ? false : initial}
+      whileInView={{ opacity: 1, x: 0, y: 0 }}
+      viewport={{ once: true, margin: "-10% 0px" }}
+      transition={{ duration: 0.7, delay: delay / 1000, ease: EASE }}
+      className={className}
+    >
       {children}
-    </div>
+    </motion.div>
   );
 }
