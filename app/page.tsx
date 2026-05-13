@@ -10,6 +10,7 @@ import AnimatedCounter from "@/components/AnimatedCounter";
 import ScrollReveal from "@/components/ScrollReveal";
 import MagneticButton from "@/components/MagneticButton";
 import imageMeta from "@/lib/image-meta.json";
+import { cohorts as cohortsData } from "@/data/cohorts";
 
 const ENROLL_URL = "https://rap-course-delta.vercel.app/enroll/";
 
@@ -116,29 +117,13 @@ const instructors = [
   },
 ];
 
-const cohorts = [
-  {
-    label: "Cohort 1",
-    dates: "May 22 — Jun 19, 2026",
-    format: "Online · Weekly cohort calls",
-    capacity: "25 seats left of 30",
-    tier: "Founding rate",
-  },
-  {
-    label: "Cohort 2",
-    dates: "Sep 11 — Oct 9, 2026",
-    format: "Online · Weekly cohort calls",
-    capacity: "30 seats",
-    tier: "Standard rate",
-  },
-  {
-    label: "Cohort 3",
-    dates: "Oct 23 — 25, 2026",
-    format: "In-person · Vancouver",
-    capacity: "25 seats",
-    tier: "Intensive rate",
-  },
-];
+const cohorts = cohortsData.map((c) => ({
+  label: c.label,
+  dates: c.dates,
+  format: c.format,
+  capacity: c.capacity,
+  tier: c.inPerson ? "Intensive rate" : c.id === "c1-may" ? "Founding rate" : "Standard rate",
+}));
 
 export default function Home() {
   return (
