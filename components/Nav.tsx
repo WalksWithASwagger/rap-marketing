@@ -7,9 +7,10 @@ import BcAiLogo from "./BcAiLogo";
 
 const links = [
   { href: "/program", label: "Program" },
+  { href: "/methodology", label: "Methodology" },
   { href: "/instructors", label: "Instructors" },
-  { href: "/pricing", label: "Pricing" },
   { href: "/cohorts", label: "Cohorts" },
+  { href: "/pricing", label: "Pricing" },
   { href: "/faq", label: "FAQ" },
 ];
 

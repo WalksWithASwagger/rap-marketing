@@ -1,201 +1,158 @@
 import type { Metadata } from "next";
 import Image from "next/image";
-import Link from "next/link";
-import ScrollReveal from "@/components/ScrollReveal";
+import MagneticButton from "@/components/MagneticButton";
+import InstructorPortrait from "@/components/InstructorPortrait";
+import imageMeta from "@/lib/image-meta.json";
+
+type Meta = Record<string, { blurDataURL?: string }>;
+const meta = imageMeta as Meta;
 
 export const metadata: Metadata = {
   title: "Instructors | RAP Certification",
-  description: "Meet the team behind the Responsible AI Professional certification program.",
+  description:
+    "Kris Krüg, Martin Lopatka, Sarah Downey — the practitioners behind the Responsible AI Professional certification.",
 };
 
 const instructors = [
   {
     name: "Kris Krüg",
     role: "Program Lead",
-    image: "instructor-kk.png",
-    bio: [
-      "National Geographic photographer and 18-year Getty Images contributor who bridges creative and technical worlds. TED speaker. SXSW Interactive Advisory Board veteran (11+ years). CTO of Indigenomics Institute.",
-      "Founded Vancouver AI meetup, growing it from 80 people to 250+ monthly attendees with 25+ consecutive Indigenous ceremony openings. Former CBC 'Sandboxing AI' host. Co-authored BC Studies academic paper on grassroots AI communities. Named to Vancouver Magazine Power 50 (2025).",
-      "Built world's first Drupal company (Bryght) and created Dead.net for Grateful Dead. Author of BitTorrent for Dummies and Killer Photos with Your iPhone.",
-      "Believes technology isn't neutral and neither is he.",
+    side: "left" as const,
+    images: [
+      "/images/instructor-kk.png",
+      "/images/03b-team-connected-minds.png",
+      "/images/10c-cta-path-forward.png",
     ],
-    highlights: [
-      "National Geographic + Getty Images",
+    bio: [
+      "National Geographic photographer, 18-year Getty Images contributor. TED speaker, SXSW Advisory Board veteran (11+ years). CTO of Indigenomics Institute.",
+      "Founded Vancouver AI meetup (80→250+ attendees, 25+ Indigenous ceremony openings). Former CBC “Sandboxing AI” host. Co-authored BC Studies academic paper on grassroots AI. Vancouver Magazine Power 50 (2025).",
+      "Built world’s first Drupal company, created Dead.net. Author: BitTorrent for Dummies, Killer Photos with Your iPhone.",
+    ],
+    badges: [
+      "National Geographic",
+      "Getty Images · 18 yrs",
       "TED Speaker",
       "Vancouver Magazine Power 50 (2025)",
       "CTO, Indigenomics Institute",
-      "Founded Vancouver AI Meetup",
-      "CBC 'Sandboxing AI' Host",
     ],
   },
   {
     name: "Martin Lopatka",
     role: "Curriculum Developer",
-    image: "01c-martin-deep-forest.png",
-    bio: [
-      "PhD in Forensic Statistics, M.Sc. in AI. Mozilla alumni with production ML systems experience.",
-      "Deep expertise in responsible AI assessment frameworks, model governance, and regulatory alignment. Brings real-world experience deploying and auditing AI systems at scale.",
-      "Voluntary contribution to curriculum design — no employer conflicts. BC + AI Founding Member #31.",
+    side: "right" as const,
+    images: [
+      "/images/01a-martin-forest-network.png",
+      "/images/01b-martin-aurora-glow.png",
+      "/images/01c-martin-deep-forest.png",
     ],
-    highlights: [
+    bio: [
+      "PhD in Forensic Statistics, M.Sc. in AI. Mozilla alumni with production ML experience.",
+      "Expertise in responsible AI assessment frameworks, model governance, regulatory alignment.",
+      "BC + AI Founding Member #31. Voluntary curriculum advisor (no employer conflicts).",
+    ],
+    badges: [
       "PhD Forensic Statistics",
-      "M.Sc. Artificial Intelligence",
+      "M.Sc. AI",
       "Mozilla Alumni",
-      "Production ML Systems",
-      "Model Governance Expert",
+      "Model Governance",
       "BC + AI Founding Member #31",
     ],
   },
   {
     name: "Sarah Downey",
-    role: "Instructor",
-    image: "02c-sarah-twilight-wisdom.png",
+    role: "Guest Instructor",
+    side: "left" as const,
+    images: [
+      "/images/02a-sarah-human-connection.png",
+      "/images/02b-sarah-warm-earth.png",
+      "/images/02c-sarah-twilight-wisdom.png",
+    ],
     bio: [
       "AI consultant and strategist based in Victoria with 20+ years in nonprofit and social impact leadership.",
-      "Hosts facilitated conversations for nonprofit leaders on ethical AI governance. Course creator focused on helping mission-driven organizations adopt AI responsibly.",
-      "Her ethos: Stay Curious. Stay Connected. Stay Human. Brings nonprofit sector expertise, facilitation skills, and a values-centered approach to every session.",
+      "Hosts facilitated conversations for nonprofit leaders on ethical AI governance. Course creator focused on helping mission-driven organizations adopt AI responsibly with her ethos: Stay Curious. Stay Connected. Stay Human.",
       "BC + AI Founding Member #138.",
     ],
-    highlights: [
-      "20+ Years Nonprofit Leadership",
+    badges: [
+      "20+ yrs Nonprofit Leadership",
       "AI Governance Facilitator",
-      "Values-Centered Approach",
       "Victoria, BC",
       "BC + AI Founding Member #138",
-      "Stay Curious. Stay Connected. Stay Human.",
     ],
   },
 ];
 
 export default function InstructorsPage() {
+  const ctaBlur = meta["/images/03b-team-connected-minds.png"]?.blurDataURL;
+
   return (
     <>
-      {/* Header */}
-      <section className="max-w-6xl mx-auto px-4 sm:px-6 pt-20 pb-12">
-        <p className="text-gold text-sm font-semibold uppercase tracking-widest mb-4">
-          The Team
-        </p>
-        <h1 className="font-serif text-4xl sm:text-5xl text-cream font-bold mb-6">
-          Practitioners, not theorists.
-        </h1>
-        <p className="text-muted text-lg max-w-2xl leading-relaxed">
-          RAP is built and taught by people who have shipped products, filed ethics
-          frameworks, run communities, and navigated exactly the tensions this program
-          addresses. No academic detachment. No vendor agenda.
-        </p>
-      </section>
-
-      {/* Team art tile */}
-      <section className="max-w-6xl mx-auto px-4 sm:px-6 mb-20">
-        <div className="rounded-2xl overflow-hidden">
-          <div className="relative w-full" style={{ aspectRatio: "16/5" }}>
-            <Image
-              src="/images/03b-team-connected-minds.png"
-              alt="RAP Instructor Team — connected minds"
-              fill
-              className="object-cover object-center"
-              priority
-            />
-            <div className="absolute inset-0 bg-gradient-to-r from-forest-900/80 via-forest-900/40 to-transparent" />
-            <div className="absolute inset-0 flex items-center">
-              <div className="px-8 sm:px-12">
-                <p className="text-growth text-xs font-semibold uppercase tracking-[0.2em] mb-3">The Team</p>
-                <p className="text-cream font-serif text-2xl sm:text-3xl font-bold max-w-md">
-                  Three perspectives. One program. Zero vendor agendas.
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Individual instructor sections */}
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 pb-24 space-y-24">
-        {instructors.map((inst, idx) => (
-          <section key={inst.name}>
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-0 items-stretch rounded-2xl overflow-hidden border border-forest-600">
-              {/* Image — full bleed, no padding */}
-              <div className={`relative min-h-[360px] lg:min-h-0 ${idx % 2 === 1 ? "lg:order-2" : ""}`}>
-                <Image
-                  src={`/images/${inst.image}`}
-                  alt={inst.name}
-                  fill
-                  className="object-cover"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-forest-900/90 via-forest-900/20 to-transparent" />
-                <div className="absolute bottom-0 left-0 right-0 p-6">
-                  <p className="text-gold text-xs font-semibold uppercase tracking-widest mb-1">{inst.role}</p>
-                  <p className="text-cream font-serif font-bold text-2xl">{inst.name}</p>
-                </div>
-              </div>
-
-              {/* Content */}
-              <ScrollReveal className={`bg-forest-800 p-8 sm:p-10 flex flex-col justify-center ${idx % 2 === 1 ? "lg:order-1" : ""}`}>
-                <p className="text-growth text-xs font-semibold uppercase tracking-[0.2em] mb-2">
-                  {inst.role}
-                </p>
-                <h2 className="font-serif text-3xl text-cream font-bold mb-6">{inst.name}</h2>
-
-                <div className="space-y-4 text-muted leading-relaxed mb-8">
-                  {inst.bio.map((para, i) => (
-                    <p key={i}>{para}</p>
-                  ))}
-                </div>
-
-                <div className="flex flex-wrap gap-2">
-                  {inst.highlights.map((h) => (
-                    <span
-                      key={h}
-                      className="px-3 py-1 bg-forest-700 border border-forest-600 rounded-full text-xs text-muted"
-                    >
-                      {h}
-                    </span>
-                  ))}
-                </div>
-              </ScrollReveal>
-            </div>
-          </section>
-        ))}
-      </div>
-
-      {/* Future instructors */}
-      <section className="bg-forest-800/50 py-20">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 text-center">
-          <h2 className="font-serif text-3xl text-cream font-bold mb-4">
-            Growing the instructor pipeline.
-          </h2>
-          <p className="text-muted text-lg max-w-2xl mx-auto mb-8">
-            RAP is actively building toward adding Indigenous data governance experts,
-            medical ethics practitioners, and additional AI governance specialists.
-            Cohort 2 (October 2026) will expand the instructor roster.
+      {/* Intro */}
+      <section className="relative pt-24 pb-12">
+        <div className="max-w-7xl mx-auto px-6 sm:px-10">
+          <p className="text-cyan text-xs font-semibold uppercase tracking-[0.3em] mb-6">
+            The Team
           </p>
-          <div className="inline-flex items-center gap-2 text-muted text-sm">
-            <span>Interested in teaching?</span>
-            <a href="mailto:hello@bc-ai.ca" className="text-accent hover:text-cream transition-colors">
-              Get in touch →
-            </a>
-          </div>
+          <h1
+            className="font-serif font-semibold text-cream leading-[0.95] tracking-tight max-w-4xl"
+            style={{ fontSize: "clamp(2.5rem, 6vw + 0.5rem, 5.5rem)" }}
+          >
+            Practitioners. Not theorists.
+          </h1>
+          <p className="mt-8 text-cream/70 max-w-2xl text-lg leading-relaxed">
+            RAP is built and taught by people who have shipped products, filed ethics
+            frameworks, run communities, and navigated exactly the tensions this program
+            addresses. No academic detachment. No vendor agenda.
+          </p>
         </div>
       </section>
 
-      {/* CTA */}
-      <section className="max-w-6xl mx-auto px-4 sm:px-6 py-20 text-center">
-        <h2 className="font-serif text-3xl text-cream font-bold mb-6">
-          Learn from people doing the work.
-        </h2>
-        <div className="flex flex-wrap justify-center gap-4">
-          <Link
-            href="/enroll"
-            className="px-8 py-4 bg-orange text-cream font-bold rounded-lg hover:bg-orange/85 transition-colors glow-box"
-          >
-            Enroll Now →
-          </Link>
-          <Link
-            href="/program"
-            className="px-8 py-4 border border-forest-500 text-growth font-semibold rounded-lg hover:border-growth transition-colors"
-          >
-            See the Curriculum
-          </Link>
+      {/* Instructors — magazine layout */}
+      {instructors.map((inst) => (
+        <InstructorPortrait
+          key={inst.name}
+          name={inst.name}
+          role={inst.role}
+          bio={inst.bio}
+          images={inst.images}
+          side={inst.side}
+          badges={inst.badges}
+        />
+      ))}
+
+      {/* Closing CTA — full-bleed */}
+      <section className="relative h-[70vh] min-h-[480px] overflow-hidden">
+        <Image
+          src="/images/03b-team-connected-minds.png"
+          alt="The instructor team — three perspectives, one program"
+          fill
+          sizes="100vw"
+          loading="lazy"
+          placeholder={ctaBlur ? "blur" : undefined}
+          blurDataURL={ctaBlur}
+          className="object-cover"
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-forest-950/95 via-forest-950/65 to-forest-950/30" />
+        <div className="relative h-full flex items-center">
+          <div className="max-w-5xl mx-auto px-6 sm:px-10 text-center">
+            <h2
+              className="font-serif font-semibold text-cream leading-[1.02] mb-10"
+              style={{ fontSize: "clamp(2rem, 4vw + 0.5rem, 4rem)" }}
+            >
+              Learn from people doing the work.
+            </h2>
+            <div className="flex flex-wrap justify-center gap-4">
+              <MagneticButton
+                href="https://rap-course-delta.vercel.app/enroll/"
+                external
+                variant="primary"
+              >
+                Apply to learn from them →
+              </MagneticButton>
+              <MagneticButton href="/program" variant="secondary">
+                See the curriculum
+              </MagneticButton>
+            </div>
+          </div>
         </div>
       </section>
     </>
