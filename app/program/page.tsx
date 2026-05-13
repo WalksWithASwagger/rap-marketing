@@ -11,9 +11,23 @@ import { ENROLL_URL, modules } from "@/data/modules";
 const meta = imageMeta as Record<string, { blurDataURL?: string }>;
 
 export const metadata: Metadata = {
-  title: "Program | RAP Certification",
+  title: "Program",
   description:
     "Four weeks. Four arguments. One certification. The RAP curriculum is a sticky-scroll arc through Foundations, Core Ethics, Societal Impact, and The Human Element.",
+  alternates: { canonical: "/program" },
+  openGraph: {
+    title: "RAP Program — Four weeks, four arguments",
+    description:
+      "The full curriculum arc — Foundations, Core Ethics, Societal Impact, and The Human Element.",
+    url: "/program",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "RAP Program — Four weeks, four arguments",
+    description:
+      "The full curriculum arc — Foundations, Core Ethics, Societal Impact, and The Human Element.",
+  },
 };
 
 const chapters: ArcChapter[] = modules.map((m) => ({

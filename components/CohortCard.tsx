@@ -84,32 +84,33 @@ export default function CohortCard({ cohort, index = 0 }: Props) {
         </p>
 
         <dl className="space-y-3 text-sm mb-6">
-          <div>
-            <dt className="text-[10px] uppercase tracking-[0.25em] text-cream/50">Format</dt>
-            <dd className="mt-1 text-cream/85">{cohort.format}</dd>
-          </div>
-          <div>
-            <dt className="text-[10px] uppercase tracking-[0.25em] text-cream/50">Capacity</dt>
-            <dd className="mt-1 text-cream/85">{cohort.capacity}</dd>
-            <div className="mt-2 h-1 rounded-full bg-forest-700 overflow-hidden">
-              <motion.div
+          <dt className="text-[10px] uppercase tracking-[0.25em] text-cream/70">Format</dt>
+          <dd className="-mt-2 text-cream/85">{cohort.format}</dd>
+
+          <dt className="text-[10px] uppercase tracking-[0.25em] text-cream/70">Capacity</dt>
+          <dd className="-mt-2 text-cream/85">
+            <span>{cohort.capacity}</span>
+            <span
+              className="mt-2 block h-1 rounded-full bg-forest-700 overflow-hidden"
+              aria-hidden="true"
+            >
+              <motion.span
                 initial={reduced ? { width: `${seatsPct}%` } : { width: 0 }}
                 whileInView={{ width: `${seatsPct}%` }}
                 viewport={{ once: true, margin: "-10% 0px" }}
                 transition={{ duration: 1, delay: 0.3 + index * 0.12, ease: EASE }}
-                className="h-full bg-cyan shadow-[0_0_12px_rgba(0,221,204,0.7)]"
+                className="block h-full bg-cyan shadow-[0_0_12px_rgba(0,221,204,0.7)]"
               />
-            </div>
-          </div>
-          <div>
-            <dt className="text-[10px] uppercase tracking-[0.25em] text-cream/50">Pricing</dt>
-            <dd className="mt-1 text-cream/85">
-              <span className="text-cream font-semibold">
-                ${cohort.priceStandard.toLocaleString()}
-              </span>
-              <span className="text-cream/55"> CAD · Member ${cohort.priceMember}</span>
-            </dd>
-          </div>
+            </span>
+          </dd>
+
+          <dt className="text-[10px] uppercase tracking-[0.25em] text-cream/70">Pricing</dt>
+          <dd className="-mt-2 text-cream/85">
+            <span className="text-cream font-semibold">
+              ${cohort.priceStandard.toLocaleString()}
+            </span>
+            <span className="text-cream/75"> CAD · Member ${cohort.priceMember}</span>
+          </dd>
         </dl>
 
         <p className="text-cream/65 text-sm leading-relaxed mb-7 flex-1">

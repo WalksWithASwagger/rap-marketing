@@ -50,7 +50,7 @@ export default function Nav() {
           ))}
           <Link
             href="/enroll"
-            className="ml-2 px-4 py-2 bg-orange text-cream text-sm font-semibold rounded hover:bg-orange/80 transition-colors glow-box"
+            className="ml-2 px-4 py-2 bg-orange text-black text-sm font-bold rounded hover:bg-orange/90 transition-colors glow-box"
           >
             Enroll Now
           </Link>
@@ -89,7 +89,7 @@ export default function Nav() {
           ))}
           <Link
             href="/enroll"
-            className="mt-2 px-4 py-2 bg-orange text-cream text-sm font-semibold rounded text-center"
+            className="mt-2 px-4 py-2 bg-orange text-black text-sm font-bold rounded text-center"
             onClick={() => setOpen(false)}
           >
             Enroll Now

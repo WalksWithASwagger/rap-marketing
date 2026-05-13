@@ -57,7 +57,7 @@ function Card({ title, eyebrow, priceKey, cohorts, emphasis }: CardProps) {
       >
         {eyebrow}
       </p>
-      <h3 className="font-serif text-cream text-xl font-semibold mb-5">{title}</h3>
+      <h2 className="font-serif text-cream text-xl font-semibold mb-5">{title}</h2>
 
       <ul className="space-y-3 mb-6 flex-1">
         {cohorts.map((c) => {

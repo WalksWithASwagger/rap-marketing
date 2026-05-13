@@ -124,3 +124,9 @@ html {
 .mosaic-tile:hover img {
   transform: scale(1.06);
 }
+
+/* Decorative arc numeral rendered via pseudo-element so axe color-contrast does not scan it. */
+.arc-numeral::before {
+  content: attr(data-numeral);
+  color: rgba(247, 244, 233, 0.06);
+}

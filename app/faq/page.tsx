@@ -5,9 +5,23 @@ import MagneticButton from "@/components/MagneticButton";
 import ScrollReveal from "@/components/ScrollReveal";
 
 export const metadata: Metadata = {
-  title: "FAQ | RAP Certification",
+  title: "FAQ",
   description:
     "Twelve answers to the questions people ask before they enroll in the RAP certification — time commitment, prerequisites, refunds, what makes the program different.",
+  alternates: { canonical: "/faq" },
+  openGraph: {
+    title: "RAP FAQ",
+    description:
+      "Twelve answers before you enroll — time, prerequisites, refunds, format.",
+    url: "/faq",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "RAP FAQ",
+    description:
+      "Twelve answers before you enroll — time, prerequisites, refunds, format.",
+  },
 };
 
 const faqs: FaqItem[] = [

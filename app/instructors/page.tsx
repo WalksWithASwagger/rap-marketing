@@ -8,9 +8,23 @@ type Meta = Record<string, { blurDataURL?: string }>;
 const meta = imageMeta as Meta;
 
 export const metadata: Metadata = {
-  title: "Instructors | RAP Certification",
+  title: "Instructors",
   description:
     "Kris Krüg, Martin Lopatka, Sarah Downey — the practitioners behind the Responsible AI Professional certification.",
+  alternates: { canonical: "/instructors" },
+  openGraph: {
+    title: "RAP Instructors",
+    description:
+      "Kris Krüg, Martin Lopatka, Sarah Downey — the practitioners teaching RAP.",
+    url: "/instructors",
+    type: "profile",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "RAP Instructors",
+    description:
+      "Kris Krüg, Martin Lopatka, Sarah Downey — the practitioners teaching RAP.",
+  },
 };
 
 const instructors = [

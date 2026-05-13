@@ -10,9 +10,23 @@ type Meta = Record<string, { blurDataURL?: string }>;
 const meta = imageMeta as Meta;
 
 export const metadata: Metadata = {
-  title: "Pricing | RAP Certification",
+  title: "Pricing",
   description:
     "RAP tuition is $1,500 CAD per cohort — half off if you're a BC + AI member. Three cohorts, same content, pick what fits your calendar.",
+  alternates: { canonical: "/pricing" },
+  openGraph: {
+    title: "RAP Pricing — $1,500 CAD, half off for members",
+    description:
+      "Three cohorts, same content. Online tuition $1,500 standard / $750 BC+AI member.",
+    url: "/pricing",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "RAP Pricing — $1,500 CAD, half off for members",
+    description:
+      "Three cohorts, same content. Online tuition $1,500 standard / $750 BC+AI member.",
+  },
 };
 
 const cohorts = [

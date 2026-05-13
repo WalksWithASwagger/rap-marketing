@@ -65,7 +65,7 @@ export default function FaqAccordion({ items }: Props) {
             key={i}
             className="bg-forest-800 border border-forest-600 rounded-xl overflow-hidden"
           >
-            <h3 className="m-0">
+            <h2 className="m-0">
               <button
                 ref={(el) => {
                   btnRefs.current[i] = el;
@@ -94,7 +94,7 @@ export default function FaqAccordion({ items }: Props) {
                   +
                 </motion.span>
               </button>
-            </h3>
+            </h2>
 
             <AnimatePresence initial={false}>
               {isOpen && (
