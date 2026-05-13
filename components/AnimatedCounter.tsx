@@ -1,6 +1,8 @@
 "use client";
 
+import { motion, useInView, useMotionValue, useSpring, useTransform } from "motion/react";
 import { useEffect, useRef, useState } from "react";
+import useReducedMotion from "@/lib/useReducedMotion";
 
 interface Props {
   target: number;
@@ -8,45 +10,65 @@ interface Props {
   prefix?: string;
   duration?: number;
   className?: string;
+  glow?: boolean;
 }
 
-export default function AnimatedCounter({ target, suffix = "", prefix = "", duration = 1500, className = "" }: Props) {
-  const [count, setCount] = useState(0);
+export default function AnimatedCounter({
+  target,
+  suffix = "",
+  prefix = "",
+  duration = 1500,
+  className = "",
+  glow = true,
+}: Props) {
+  const reduced = useReducedMotion();
   const ref = useRef<HTMLSpanElement>(null);
-  const started = useRef(false);
+  const inView = useInView(ref, { once: true, margin: "-20% 0px" });
+
+  const mv = useMotionValue(0);
+  const spring = useSpring(mv, {
+    stiffness: 60,
+    damping: 18,
+    mass: 0.5,
+    duration: duration / 1000,
+  });
+
+  const [display, setDisplay] = useState(reduced ? target : 0);
+
+  // Glow strength tracks the "velocity" toward target — pulse during the count.
+  const glowAlpha = useTransform(spring, (v) => {
+    if (!glow) return 0;
+    const t = Math.max(0, Math.min(1, v / Math.max(target, 1)));
+    // Peak around mid animation, taper to 0 at rest.
+    return 0.7 * Math.sin(t * Math.PI);
+  });
+  const textShadow = useTransform(
+    glowAlpha,
+    (a) => `0 0 ${10 + a * 30}px rgba(0, 221, 204, ${a.toFixed(3)})`
+  );
 
   useEffect(() => {
-    const el = ref.current;
-    if (!el) return;
+    if (reduced) {
+      setDisplay(target);
+      return;
+    }
+    if (inView) mv.set(target);
+  }, [inView, mv, target, reduced]);
 
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting && !started.current) {
-          started.current = true;
-          const start = performance.now();
-
-          function tick(now: number) {
-            const elapsed = now - start;
-            const progress = Math.min(elapsed / duration, 1);
-            const eased = 1 - Math.pow(1 - progress, 3);
-            setCount(Math.round(eased * target));
-            if (progress < 1) requestAnimationFrame(tick);
-          }
-
-          requestAnimationFrame(tick);
-          observer.unobserve(el);
-        }
-      },
-      { threshold: 0.5 }
-    );
-
-    observer.observe(el);
-    return () => observer.disconnect();
-  }, [target, duration]);
+  useEffect(() => {
+    const unsub = spring.on("change", (v) => setDisplay(Math.round(v)));
+    return () => unsub();
+  }, [spring]);
 
   return (
-    <span ref={ref} className={className}>
-      {prefix}{count}{suffix}
-    </span>
+    <motion.span
+      ref={ref}
+      style={glow && !reduced ? { textShadow } : undefined}
+      className={className}
+    >
+      {prefix}
+      {display}
+      {suffix}
+    </motion.span>
   );
 }
