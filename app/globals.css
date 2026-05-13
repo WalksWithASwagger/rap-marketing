@@ -1,40 +1,126 @@
 @import "tailwindcss";
 
 @theme {
-  --color-forest-950: #060f07;
-  --color-forest-900: #0d1f10;
-  --color-forest-800: #122618;
-  --color-forest-700: #1a3020;
-  --color-forest-600: #254530;
-  --color-forest-500: #3d6b5f;
-  --color-accent: #5eba6f;
-  --color-accent-bright: #4ade80;
-  --color-gold: #d4a84b;
-  --color-teal: #2d7d8a;
-  --color-blue: #4a6fa5;
-  --color-cream: #f5f4f0;
-  --color-muted: #9caea0;
+  /* True Rafiki brand palette — Pacific Northwest organic tech / bioluminescent */
+  --color-forest-950: #0d1f15;
+  --color-forest-900: #1E3A2B;
+  --color-forest-800: #25472f;
+  --color-forest-700: #2e5438;
+  --color-forest-600: #3a6644;
+  --color-forest-500: #4d7a56;
+  --color-coast: #175E7C;
+  --color-purple: #523E7B;
+  --color-orange: #D35C37;
+  --color-growth: #68B091;
+  --color-cyan: #00DDCC;
+  --color-accent: #68B091;
+  --color-accent-bright: #00DDCC;
+  --color-gold: #FFD700;
+  --color-teal: #175E7C;
+  --color-blue: #523E7B;
+  --color-earth: #78552B;
+  --color-cream: #F7F4E9;
+  --color-muted: #a8b8a0;
 
-  --font-sans: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica,
-    Arial, sans-serif;
-  --font-serif: Georgia, "Times New Roman", Times, serif;
+  --font-sans: var(--font-inter), system-ui, -apple-system, BlinkMacSystemFont,
+    "Segoe UI", Helvetica, Arial, sans-serif;
+  --font-serif: var(--font-fraunces), Georgia, "Times New Roman", Times, serif;
+  --font-display: var(--font-fraunces), Georgia, "Times New Roman", Times, serif;
 }
 
 body {
-  background-color: #0d1f10;
-  color: #f5f4f0;
+  background-color: #1E3A2B;
+  color: #F7F4E9;
   font-family: var(--font-sans);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* Smooth scroll */
 html {
   scroll-behavior: smooth;
 }
 
-/* Focus ring */
 :focus-visible {
-  outline: 2px solid #d4a84b;
+  outline: 2px solid #00DDCC;
   outline-offset: 2px;
+}
+
+/* Bioluminescent glow animation */
+@keyframes glow-pulse {
+  0%, 100% {
+    text-shadow: 0 0 20px #00DDCC40, 0 0 40px #00DDCC20;
+  }
+  50% {
+    text-shadow: 0 0 30px #00DDCC80, 0 0 60px #00DDCC40, 0 0 80px #00DDCC20;
+  }
+}
+
+@keyframes glow-box-pulse {
+  0%, 100% {
+    box-shadow: 0 0 20px #00DDCC20, 0 0 40px #00DDCC10;
+  }
+  50% {
+    box-shadow: 0 0 30px #00DDCC50, 0 0 60px #00DDCC30;
+  }
+}
+
+/* Scroll reveal animations */
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(28px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slide-right {
+  from {
+    opacity: 0;
+    transform: translateX(-28px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.reveal {
+  opacity: 0;
+}
+
+.reveal.visible {
+  animation: fade-up 0.7s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.reveal-right.visible {
+  animation: slide-right 0.7s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.glow-text {
+  animation: glow-pulse 3s ease-in-out infinite;
+}
+
+.glow-box {
+  animation: glow-box-pulse 3s ease-in-out infinite;
+}
+
+/* Image mosaic hover effect */
+.mosaic-tile {
+  overflow: hidden;
+}
+
+.mosaic-tile img {
+  transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.mosaic-tile:hover img {
+  transform: scale(1.06);
 }

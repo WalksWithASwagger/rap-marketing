@@ -1,5 +1,8 @@
 import Image from "next/image";
 import Link from "next/link";
+import ScrollReveal from "@/components/ScrollReveal";
+import AnimatedCounter from "@/components/AnimatedCounter";
+import PricingToggle from "@/components/PricingToggle";
 
 const modules = [
   {
@@ -7,6 +10,7 @@ const modules = [
     title: "Foundations",
     theme: "Technical Grounding + The Accuracy Problem",
     color: "#4a6fa5",
+    borderColor: "border-l-[#4a6fa5]",
     points: [
       "How AI systems actually work",
       "The confidence-accuracy gap",
@@ -19,7 +23,8 @@ const modules = [
     week: "Week 2",
     title: "Core Ethics",
     theme: "Bias, Privacy & Ownership",
-    color: "#2d7d8a",
+    color: "#175E7C",
+    borderColor: "border-l-[#175E7C]",
     points: [
       "Identify algorithmic bias",
       "Data collection, consent, surveillance",
@@ -32,12 +37,13 @@ const modules = [
     week: "Week 3",
     title: "Societal Impact",
     theme: "Systems Thinking",
-    color: "#3d6b5f",
+    color: "#68B091",
+    borderColor: "border-l-[#68B091]",
     points: [
       "When is AI ready to deploy?",
       "Labor displacement & augmentation",
       "Environmental cost of computation",
-      "Deployment ethics in practice",
+      "Stakeholder impact mapping",
     ],
     artifact: "Deployment Checklist",
   },
@@ -45,12 +51,13 @@ const modules = [
     week: "Week 4",
     title: "The Human Element",
     theme: "Human Values",
-    color: "#d4a84b",
+    color: "#D35C37",
+    borderColor: "border-l-[#D35C37]",
     points: [
       "Deepfakes, synthetic media, trust erosion",
       "Human-AI relationships & parasocial dynamics",
       "Creativity, agency, meaning",
-      "Vulnerable populations",
+      "Indigenous knowledge & data sovereignty",
     ],
     artifact: "Ethics Impact Assessment",
   },
@@ -58,7 +65,7 @@ const modules = [
 
 const differentiators = [
   ["Duration", "6–10 weeks", "4 weeks (focused intensity)"],
-  ["Assessment", "Single exam or attendance-based", "Ongoing quizzes + practical exercises"],
+  ["Assessment", "Single exam or attendance-based", "Ongoing quizzes + practical artifacts"],
   ["Content", "Academic theory or narrow technical focus", "Full spectrum: technical to human"],
   ["Community", "Individual learning", "Cohort-based with alumni network"],
   ["Frameworks", "Single perspective", "Multi-framework: UNESCO, OECD, NIST, IEEE"],
@@ -66,106 +73,175 @@ const differentiators = [
   ["Post-program", "Certificate, maybe slides", "Custom GPT trained on your work"],
 ];
 
+const mosaicImages = [
+  { src: "/images/carousel-cover.png", alt: "RAP carousel cover", span: "col-span-2 row-span-2" },
+  { src: "/images/06c-frameworks-shield-quarters.png", alt: "RAP frameworks shield" },
+  { src: "/images/content-accuracy-gap.png", alt: "Accuracy gap" },
+  { src: "/images/05a-30seats-forest-gathering.png", alt: "30 seats cohort" },
+  { src: "/images/09b-gpt-growing-tree.png", alt: "Ethics practice growing" },
+  { src: "/images/08c-practical-transformation.png", alt: "Practical transformation" },
+];
+
 export default function Home() {
   return (
     <>
-      {/* ── Hero ── */}
-      <section className="relative overflow-hidden">
-        <div className="relative w-full" style={{ aspectRatio: "16/7", maxHeight: 600 }}>
-          <Image
-            src="/images/10a-cta-bold-hero.png"
-            alt="Not Theory. Practical Ethics."
-            fill
-            className="object-cover object-center"
-            priority
-          />
-          <div className="absolute inset-0 bg-gradient-to-r from-forest-900/80 via-forest-900/40 to-transparent" />
-          <div className="absolute inset-0 flex items-center">
-            <div className="max-w-6xl mx-auto px-4 sm:px-6 w-full">
-              <div className="max-w-xl">
-                <p className="text-gold text-sm font-semibold uppercase tracking-widest mb-3">
-                  RAP Certification
-                </p>
-                <h1 className="font-serif text-4xl sm:text-5xl lg:text-6xl text-cream font-bold leading-tight mb-4">
-                  Lead with ethics<br />in an AI-first world.
-                </h1>
-                <p className="text-cream/80 text-lg mb-8 leading-relaxed">
-                  4 weeks. Real scenarios. Global frameworks.<br />
-                  A credential you&apos;ll actually use.
-                </p>
-                <div className="flex flex-wrap gap-3">
-                  <Link
-                    href="/enroll"
-                    className="px-6 py-3 bg-gold text-forest-950 font-semibold rounded hover:bg-yellow-400 transition-colors"
-                  >
-                    Enroll Now
-                  </Link>
-                  <Link
-                    href="/program"
-                    className="px-6 py-3 border border-cream/40 text-cream font-semibold rounded hover:border-cream/80 transition-colors"
-                  >
-                    See the Curriculum
-                  </Link>
-                </div>
+      {/* ── Hero — full viewport ── */}
+      <section className="relative h-screen min-h-[600px] max-h-[1000px] overflow-hidden">
+        <Image
+          src="/images/10a-cta-bold-hero.png"
+          alt="Lead with ethics in an AI-first world"
+          fill
+          className="object-cover object-center"
+          priority
+        />
+        {/* Left-heavy gradient — content lives in the darker zone */}
+        <div className="absolute inset-0 bg-gradient-to-r from-forest-900/92 via-forest-900/60 to-forest-900/20" />
+        <div className="absolute inset-0 bg-gradient-to-t from-forest-900/80 via-transparent to-transparent" />
+
+        <div className="absolute inset-0 flex items-center">
+          <div className="max-w-6xl mx-auto px-4 sm:px-6 w-full grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
+            {/* Left: text */}
+            <div>
+              <p className="text-growth text-xs font-semibold uppercase tracking-[0.2em] mb-4">
+                Responsible AI Professional · BC + AI Ecosystem
+              </p>
+              <h1 className="font-serif text-5xl sm:text-6xl lg:text-7xl text-cream font-bold leading-[1.05] mb-6 glow-text">
+                Lead with<br />ethics.
+              </h1>
+              <p className="text-cream/75 text-xl mb-3 leading-relaxed">
+                4 weeks. Real scenarios. Global frameworks.
+              </p>
+              <p className="text-cream/60 text-base mb-8 max-w-md leading-relaxed">
+                A certification built for the people making decisions about AI —
+                not the people building it.
+              </p>
+              <div className="flex flex-wrap gap-3">
+                <Link
+                  href="/enroll"
+                  className="px-7 py-3.5 bg-orange text-cream font-bold rounded-lg hover:bg-orange/85 transition-all shadow-lg hover:shadow-orange/30 text-base glow-box"
+                >
+                  Enroll Now →
+                </Link>
+                <Link
+                  href="/program"
+                  className="px-7 py-3.5 border border-cream/30 text-cream font-semibold rounded-lg hover:border-cream/60 hover:bg-cream/5 transition-all text-base"
+                >
+                  See the Curriculum
+                </Link>
+              </div>
+            </div>
+
+            {/* Right: RAP cert badge */}
+            <div className="hidden lg:flex justify-center items-center">
+              <div className="relative w-72 h-72">
+                <Image
+                  src="/images/rap-cert.png"
+                  alt="RAP Certification Badge"
+                  fill
+                  className="object-contain drop-shadow-2xl"
+                />
               </div>
             </div>
           </div>
         </div>
+
+        {/* Scroll hint */}
+        <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 opacity-50">
+          <span className="text-cream text-xs uppercase tracking-widest">scroll</span>
+          <div className="w-px h-8 bg-cream/40" />
+        </div>
       </section>
 
-      {/* ── Stats strip ── */}
+      {/* ── Animated stats strip ── */}
       <section className="bg-forest-800 border-y border-forest-700">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 py-6 grid grid-cols-2 sm:grid-cols-4 gap-6 text-center">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 py-8 grid grid-cols-2 sm:grid-cols-4 gap-6 text-center">
           {[
-            ["4 Weeks", "Focused intensity"],
-            ["25–30", "Cohort size"],
-            ["4 Artifacts", "You'll actually use"],
-            ["Multi-framework", "UNESCO · OECD · NIST · IEEE"],
-          ].map(([stat, label]) => (
-            <div key={stat}>
-              <p className="text-gold font-serif text-2xl font-bold">{stat}</p>
+            { target: 4, suffix: " weeks", label: "Focused intensity" },
+            { target: 30, prefix: "25–", suffix: "", label: "Participants per cohort" },
+            { target: 4, suffix: " artifacts", label: "Practical deliverables" },
+            { target: 4, suffix: " frameworks", label: "UNESCO · OECD · NIST · IEEE" },
+          ].map(({ target, suffix, prefix, label }) => (
+            <div key={label}>
+              <p className="text-gold font-serif text-3xl font-bold">
+                <AnimatedCounter target={target} prefix={prefix} suffix={suffix} />
+              </p>
               <p className="text-muted text-sm mt-1">{label}</p>
             </div>
           ))}
         </div>
       </section>
 
-      {/* ── The Problem ── */}
-      <section className="max-w-6xl mx-auto px-4 sm:px-6 py-20">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-          <div>
-            <p className="text-accent text-sm font-semibold uppercase tracking-widest mb-4">
-              The Problem
-            </p>
-            <h2 className="font-serif text-3xl sm:text-4xl text-cream font-bold leading-tight mb-6">
-              Most organizations are deploying AI without asking the hard questions.
-            </h2>
-            <div className="space-y-4 text-muted text-base leading-relaxed">
-              <p>
-                Every organization is deploying AI. Most are doing it without governance
-                frameworks, without ethics training, without asking the hard questions.
-              </p>
-              <p>
-                And when things go wrong — when the algorithm is biased, when the system
-                hallucinates in a high-stakes decision, when trust erodes — they scramble
-                to figure out what responsible AI even means.
-              </p>
-              <p className="text-cream font-semibold text-lg italic">
-                It&apos;s too late by then.
-              </p>
-              <p>
-                The organizations that will lead aren&apos;t the ones with the fastest models.
-                They&apos;re the ones with people who know how to assess risks, apply frameworks,
-                and navigate the complexity before deployment.
-              </p>
-            </div>
-          </div>
+      {/* ── Image mosaic ── */}
+      <section className="py-16 px-4 sm:px-6 max-w-6xl mx-auto">
+        <ScrollReveal className="text-center mb-8">
+          <p className="text-cyan text-xs font-semibold uppercase tracking-[0.2em] mb-3">
+            Visual Identity
+          </p>
+          <h2 className="font-serif text-3xl sm:text-4xl text-cream font-bold">
+            Built in the Pacific Northwest.
+          </h2>
+          <p className="text-muted mt-3 max-w-lg mx-auto">
+            Organic tech meets bioluminescent clarity. This is the visual language of responsible AI.
+          </p>
+        </ScrollReveal>
 
-          <div className="rounded-xl overflow-hidden border border-forest-600">
-            <div className="relative w-full" style={{ aspectRatio: "4/3" }}>
+        <div className="grid grid-cols-3 grid-rows-2 gap-2 h-[480px] sm:h-[560px]">
+          {mosaicImages.map(({ src, alt, span }, i) => (
+            <div
+              key={src}
+              className={`mosaic-tile relative overflow-hidden rounded-lg ${span ?? ""}`}
+            >
               <Image
-                src="/images/08a-practical-theory-vs-practice.png"
-                alt="Practical over theory"
+                src={src}
+                alt={alt}
+                fill
+                className="object-cover"
+                sizes="(max-width: 768px) 50vw, 33vw"
+              />
+              {/* Subtle hover overlay */}
+              <div className="absolute inset-0 bg-forest-900/0 hover:bg-forest-900/20 transition-colors duration-300" />
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* ── The Problem — full-bleed image ── */}
+      <section className="py-16 sm:py-24 overflow-hidden">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-0 items-stretch rounded-2xl overflow-hidden border border-forest-600">
+            {/* Text */}
+            <ScrollReveal className="p-8 sm:p-12 bg-forest-800 flex flex-col justify-center">
+              <p className="text-cyan text-xs font-semibold uppercase tracking-[0.2em] mb-4">
+                The Problem
+              </p>
+              <h2 className="font-serif text-3xl sm:text-4xl text-cream font-bold leading-tight mb-6">
+                Most organizations are deploying AI<br />without asking the hard questions.
+              </h2>
+              <div className="space-y-4 text-muted text-base leading-relaxed">
+                <p>
+                  Every organization is deploying AI. Most are doing it without governance
+                  frameworks, ethics training, or the ability to ask the hard questions.
+                </p>
+                <p>
+                  And when things go wrong — biased algorithms, high-stakes hallucinations,
+                  eroded trust — they scramble to figure out what responsible AI even means.
+                </p>
+                <p className="text-cream font-serif text-xl italic font-semibold">
+                  It&apos;s too late by then.
+                </p>
+                <p>
+                  The organizations that lead won&apos;t have the fastest models. They&apos;ll have people
+                  who know how to assess risks, apply frameworks, and navigate complexity
+                  before deployment.
+                </p>
+              </div>
+            </ScrollReveal>
+
+            {/* Full-bleed image — no border/padding */}
+            <div className="relative min-h-[320px] lg:min-h-0">
+              <Image
+                src="/images/content-accuracy-gap.png"
+                alt="The accuracy gap in AI systems"
                 fill
                 className="object-cover"
               />
@@ -175,22 +251,23 @@ export default function Home() {
       </section>
 
       {/* ── 4 Modules ── */}
-      <section className="bg-forest-800/50 py-20">
+      <section className="bg-forest-800/40 py-16 sm:py-24">
         <div className="max-w-6xl mx-auto px-4 sm:px-6">
-          <div className="text-center mb-12">
-            <p className="text-accent text-sm font-semibold uppercase tracking-widest mb-3">
+          <ScrollReveal className="text-center mb-12">
+            <p className="text-growth text-xs font-semibold uppercase tracking-[0.2em] mb-3">
               What You&apos;ll Learn
             </p>
             <h2 className="font-serif text-3xl sm:text-4xl text-cream font-bold mb-4">
               Four weeks. Four frameworks. One practice.
             </h2>
             <p className="text-muted max-w-xl mx-auto">
-              Not academic theory. Not vendor sales pitches. Real scenarios, global
+              Not academic theory. Not vendor pitches. Real scenarios, global
               frameworks, and artifacts you&apos;ll bring back to work.
             </p>
-          </div>
+          </ScrollReveal>
 
-          <div className="rounded-xl overflow-hidden border border-forest-600 mb-12">
+          {/* Journey arc — full bleed */}
+          <ScrollReveal className="relative w-full mb-12 rounded-xl overflow-hidden" delay={100}>
             <div className="relative w-full" style={{ aspectRatio: "16/5" }}>
               <Image
                 src="/images/04a-curriculum-journey-arc.png"
@@ -198,41 +275,44 @@ export default function Home() {
                 fill
                 className="object-cover object-top"
               />
+              <div className="absolute inset-0 bg-gradient-to-t from-forest-800/60 to-transparent" />
             </div>
-          </div>
+          </ScrollReveal>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            {modules.map((m) => (
-              <div
-                key={m.week}
-                className="bg-forest-800 rounded-xl p-5 border border-forest-600 hover:border-forest-500 transition-colors"
-              >
-                <p className="text-xs font-semibold uppercase tracking-widest mb-1" style={{ color: m.color }}>
-                  {m.week}
-                </p>
-                <h3 className="font-serif text-cream text-lg font-bold mb-1">{m.title}</h3>
-                <p className="text-muted text-xs mb-4">{m.theme}</p>
-                <ul className="space-y-2 mb-5">
-                  {m.points.map((pt) => (
-                    <li key={pt} className="flex gap-2 text-muted text-sm">
-                      <span className="text-accent mt-0.5 shrink-0">→</span>
-                      <span>{pt}</span>
-                    </li>
-                  ))}
-                </ul>
-                <div className="border-t border-forest-600 pt-3">
-                  <p className="text-xs text-muted">
-                    <span className="text-gold">Artifact:</span> {m.artifact}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+            {modules.map((m, i) => (
+              <ScrollReveal key={m.week} delay={i * 80}>
+                <div
+                  className={`bg-forest-800 rounded-xl p-5 border-l-4 border border-forest-600 hover:border-forest-500 transition-colors h-full ${m.borderColor}`}
+                  style={{ borderLeftColor: m.color }}
+                >
+                  <p className="text-xs font-semibold uppercase tracking-widest mb-1" style={{ color: m.color }}>
+                    {m.week}
                   </p>
+                  <h3 className="font-serif text-cream text-xl font-bold mb-1">{m.title}</h3>
+                  <p className="text-muted text-xs mb-4 leading-snug">{m.theme}</p>
+                  <ul className="space-y-2 mb-5">
+                    {m.points.map((pt) => (
+                      <li key={pt} className="flex gap-2 text-muted text-sm">
+                        <span style={{ color: m.color }} className="mt-0.5 shrink-0 font-bold">→</span>
+                        <span>{pt}</span>
+                      </li>
+                    ))}
+                  </ul>
+                  <div className="border-t border-forest-600 pt-3 mt-auto">
+                    <p className="text-xs text-muted">
+                      <span className="text-gold">Artifact:</span> {m.artifact}
+                    </p>
+                  </div>
                 </div>
-              </div>
+              </ScrollReveal>
             ))}
           </div>
 
-          <div className="text-center mt-8">
+          <div className="text-center mt-10">
             <Link
               href="/program"
-              className="inline-block px-6 py-3 border border-forest-500 text-accent font-semibold rounded hover:border-accent transition-colors"
+              className="inline-block px-6 py-3 border border-forest-500 text-growth font-semibold rounded-lg hover:border-growth transition-colors"
             >
               Full Curriculum →
             </Link>
@@ -241,333 +321,285 @@ export default function Home() {
       </section>
 
       {/* ── What you walk away with ── */}
-      <section className="max-w-6xl mx-auto px-4 sm:px-6 py-20">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-          <div className="rounded-xl overflow-hidden border border-forest-600">
-            <div className="relative w-full" style={{ aspectRatio: "4/3" }}>
-              <Image
-                src="/images/09a-gpt-living-seed.png"
-                alt="Ethics Practice Assistant"
-                fill
-                className="object-cover"
-              />
-            </div>
-          </div>
+      <section className="py-16 sm:py-24">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            {/* RAP cert badge — large, centered */}
+            <ScrollReveal className="flex justify-center">
+              <div className="relative w-64 h-64 sm:w-80 sm:h-80">
+                <Image
+                  src="/images/rap-credential.png"
+                  alt="RAP Certification credential"
+                  fill
+                  className="object-contain drop-shadow-2xl"
+                />
+              </div>
+            </ScrollReveal>
 
-          <div>
-            <p className="text-accent text-sm font-semibold uppercase tracking-widest mb-4">
-              What You&apos;ll Walk Away With
-            </p>
-            <h2 className="font-serif text-3xl sm:text-4xl text-cream font-bold mb-6">
-              A practice, not just a credential.
-            </h2>
-            <div className="space-y-5">
-              {[
-                {
-                  title: "RAP Certification",
-                  desc: "Completion of all assessments, exercises, and capstone. Globally applicable.",
-                },
-                {
-                  title: "Personal Ethics Practice Assistant",
-                  desc: "A Custom GPT trained on your coursework artifacts. Your ongoing practice partner.",
-                },
-                {
-                  title: "Four Practical Artifacts",
-                  desc: "AI Inventory, Ethics Assessment, Deployment Checklist, Impact Assessment — built from your real work.",
-                },
-                {
-                  title: "Professional Network",
-                  desc: "Alumni access to BC + AI: monthly office hours, special interest groups, ongoing education.",
-                },
-              ].map((item) => (
-                <div key={item.title} className="flex gap-4">
-                  <span className="text-gold mt-0.5 shrink-0 font-bold">→</span>
-                  <div>
-                    <p className="text-cream font-semibold mb-1">{item.title}</p>
-                    <p className="text-muted text-sm leading-relaxed">{item.desc}</p>
+            <ScrollReveal delay={120}>
+              <p className="text-growth text-xs font-semibold uppercase tracking-[0.2em] mb-4">
+                What You&apos;ll Walk Away With
+              </p>
+              <h2 className="font-serif text-3xl sm:text-4xl text-cream font-bold mb-8">
+                A practice, not just a credential.
+              </h2>
+              <div className="space-y-6">
+                {[
+                  {
+                    title: "RAP Certification",
+                    color: "#FFD700",
+                    desc: "Globally applicable. Recognized by organizations building responsible AI governance.",
+                  },
+                  {
+                    title: "Personal Ethics Practice Assistant",
+                    color: "#00DDCC",
+                    desc: "A Custom GPT trained on your coursework artifacts. Your ongoing practice partner after the program ends.",
+                  },
+                  {
+                    title: "Four Practical Artifacts",
+                    color: "#68B091",
+                    desc: "AI Inventory, Ethics Assessment, Deployment Checklist, Impact Assessment — built from your real work.",
+                  },
+                  {
+                    title: "Professional Network",
+                    color: "#D35C37",
+                    desc: "Alumni access to BC + AI: monthly office hours, 7 special interest groups, 850+ Discord members.",
+                  },
+                ].map((item) => (
+                  <div key={item.title} className="flex gap-4">
+                    <span className="mt-1 shrink-0 font-bold text-lg" style={{ color: item.color }}>→</span>
+                    <div>
+                      <p className="text-cream font-semibold mb-1">{item.title}</p>
+                      <p className="text-muted text-sm leading-relaxed">{item.desc}</p>
+                    </div>
                   </div>
-                </div>
-              ))}
-            </div>
+                ))}
+              </div>
+            </ScrollReveal>
           </div>
         </div>
       </section>
 
       {/* ── Differentiator table ── */}
-      <section className="bg-forest-800/50 py-20">
+      <section className="bg-forest-800/40 py-16 sm:py-24">
         <div className="max-w-6xl mx-auto px-4 sm:px-6">
-          <div className="text-center mb-10">
-            <p className="text-accent text-sm font-semibold uppercase tracking-widest mb-3">
+          <ScrollReveal className="text-center mb-10">
+            <p className="text-growth text-xs font-semibold uppercase tracking-[0.2em] mb-3">
               Why RAP
             </p>
             <h2 className="font-serif text-3xl sm:text-4xl text-cream font-bold mb-4">
               We&apos;re not trying to be everything.<br />We&apos;re trying to be practical.
             </h2>
-          </div>
+          </ScrollReveal>
 
-          <div className="overflow-x-auto rounded-xl border border-forest-600">
-            <table className="w-full text-sm">
-              <thead>
-                <tr className="border-b border-forest-600">
-                  <th className="text-left p-4 text-muted font-semibold">Dimension</th>
-                  <th className="text-left p-4 text-muted font-semibold">Typical Course</th>
-                  <th className="text-left p-4 text-gold font-semibold">RAP</th>
-                </tr>
-              </thead>
-              <tbody>
-                {differentiators.map(([dim, them, us], i) => (
-                  <tr
-                    key={dim}
-                    className={`border-b border-forest-700 ${
-                      i % 2 === 0 ? "bg-forest-800" : "bg-forest-800/50"
-                    }`}
-                  >
-                    <td className="p-4 text-cream font-medium">{dim}</td>
-                    <td className="p-4 text-muted">{them}</td>
-                    <td className="p-4 text-accent font-medium">{us}</td>
+          <ScrollReveal delay={80}>
+            <div className="overflow-x-auto rounded-xl border border-forest-600">
+              <table className="w-full text-sm">
+                <thead>
+                  <tr className="border-b border-forest-600 bg-forest-800">
+                    <th className="text-left p-4 text-muted font-semibold">Dimension</th>
+                    <th className="text-left p-4 text-muted font-semibold">Typical Course</th>
+                    <th className="text-left p-4 font-semibold" style={{ color: "#00DDCC" }}>
+                      RAP ✦
+                    </th>
                   </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
+                </thead>
+                <tbody>
+                  {differentiators.map(([dim, them, us], i) => (
+                    <tr
+                      key={dim}
+                      className={`border-b border-forest-700 ${
+                        i % 2 === 0 ? "bg-forest-800" : "bg-forest-800/50"
+                      }`}
+                    >
+                      <td className="p-4 text-cream font-medium">{dim}</td>
+                      <td className="p-4 text-muted">{them}</td>
+                      <td className="p-4 text-growth font-medium">{us}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </ScrollReveal>
         </div>
       </section>
 
-      {/* ── Instructors strip ── */}
-      <section className="max-w-6xl mx-auto px-4 sm:px-6 py-20">
-        <div className="text-center mb-12">
-          <p className="text-accent text-sm font-semibold uppercase tracking-widest mb-3">
-            Instructors
-          </p>
-          <h2 className="font-serif text-3xl sm:text-4xl text-cream font-bold">
-            Practitioners, not theorists.
-          </h2>
-        </div>
+      {/* ── Instructors ── */}
+      <section className="py-16 sm:py-24">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6">
+          <ScrollReveal className="text-center mb-12">
+            <p className="text-growth text-xs font-semibold uppercase tracking-[0.2em] mb-3">
+              Instructors
+            </p>
+            <h2 className="font-serif text-3xl sm:text-4xl text-cream font-bold">
+              Practitioners, not theorists.
+            </h2>
+          </ScrollReveal>
 
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-10">
-          <div className="lg:col-span-1 rounded-xl overflow-hidden border border-forest-600">
-            <div className="relative w-full" style={{ minHeight: 280, position: "relative" }}>
-              <Image
-                src="/images/03a-team-triangle.png"
-                alt="RAP Instructor Team"
-                fill
-                className="object-cover"
-              />
-            </div>
-          </div>
-
-          <div className="lg:col-span-2 grid grid-cols-1 sm:grid-cols-3 gap-4">
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-10">
             {[
               {
                 name: "Kris Krüg",
                 role: "Program Lead",
-                bio: "National Geographic photographer, TED speaker, CTO of Indigenomics Institute. Founded Vancouver AI meetup (250+ attendees). Vancouver Magazine Power 50 (2025).",
+                img: "/images/instructor-kk.png",
+                bio: "National Geographic photographer, TED speaker, CTO of Indigenomics Institute. Founded Vancouver AI meetup (250+ attendees).",
               },
               {
                 name: "Martin Lopatka",
                 role: "Curriculum Developer",
-                bio: "PhD Forensic Statistics, M.Sc. AI. Mozilla alumni. Expertise in responsible AI assessment frameworks and regulatory alignment.",
+                img: "/images/01c-martin-deep-forest.png",
+                bio: "PhD Forensic Statistics, M.Sc. AI. Mozilla alumni. Expert in responsible AI assessment and regulatory alignment.",
               },
               {
                 name: "Sarah Downey",
                 role: "Instructor",
-                bio: "AI consultant, 20+ years nonprofit leadership. Facilitates ethical AI governance for mission-driven organizations. Stay Curious. Stay Connected. Stay Human.",
+                img: "/images/02c-sarah-twilight-wisdom.png",
+                bio: "20+ years nonprofit leadership. AI governance facilitator for mission-driven organizations. Stay Curious. Stay Human.",
               },
-            ].map((inst) => (
-              <div
-                key={inst.name}
-                className="bg-forest-800 rounded-xl p-5 border border-forest-600"
-              >
-                <p className="text-cream font-serif font-bold text-lg mb-1">{inst.name}</p>
-                <p className="text-gold text-xs font-semibold uppercase tracking-wider mb-3">
-                  {inst.role}
-                </p>
-                <p className="text-muted text-sm leading-relaxed">{inst.bio}</p>
-              </div>
+            ].map((inst, i) => (
+              <ScrollReveal key={inst.name} delay={i * 100}>
+                <div className="group relative rounded-xl overflow-hidden border border-forest-600 hover:border-forest-400 transition-colors">
+                  <div className="relative w-full" style={{ aspectRatio: "4/3" }}>
+                    <Image
+                      src={inst.img}
+                      alt={inst.name}
+                      fill
+                      className="object-cover transition-transform duration-500 group-hover:scale-105"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-forest-900/95 via-forest-900/40 to-transparent" />
+                  </div>
+                  <div className="absolute bottom-0 left-0 right-0 p-5">
+                    <p className="text-gold text-xs font-semibold uppercase tracking-wider mb-1">{inst.role}</p>
+                    <p className="font-serif text-cream text-xl font-bold mb-2">{inst.name}</p>
+                    <p className="text-cream/70 text-sm leading-relaxed">{inst.bio}</p>
+                  </div>
+                </div>
+              </ScrollReveal>
             ))}
           </div>
-        </div>
 
-        <div className="text-center">
-          <Link
-            href="/instructors"
-            className="inline-block px-6 py-3 border border-forest-500 text-accent font-semibold rounded hover:border-accent transition-colors"
-          >
-            Meet the Instructors →
-          </Link>
+          <div className="text-center">
+            <Link
+              href="/instructors"
+              className="inline-block px-6 py-3 border border-forest-500 text-growth font-semibold rounded-lg hover:border-growth transition-colors"
+            >
+              Meet the Instructors →
+            </Link>
+          </div>
         </div>
       </section>
 
-      {/* ── Community section ── */}
+      {/* ── Community — full viewport width ── */}
       <section className="relative overflow-hidden">
-        <div className="relative w-full" style={{ aspectRatio: "16/5" }}>
+        <div className="relative w-full" style={{ aspectRatio: "16/6", minHeight: 300 }}>
           <Image
-            src="/images/07a-alumni-growing-roots.png"
-            alt="Alumni growing roots — RAP community"
+            src="/images/07c-alumni-forest-canopy.png"
+            alt="RAP alumni community"
             fill
             className="object-cover object-center"
           />
-          <div className="absolute inset-0 bg-forest-900/70" />
+          <div className="absolute inset-0 bg-forest-900/75" />
           <div className="absolute inset-0 flex items-center justify-center text-center px-4">
-            <div className="max-w-2xl">
-              <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl text-cream font-bold mb-4">
-                This isn&apos;t a course. It&apos;s an entry point.
+            <div className="max-w-3xl">
+              <h2 className="font-serif text-4xl sm:text-5xl lg:text-6xl text-cream font-bold mb-5 glow-text">
+                This isn&apos;t a course.<br />It&apos;s an entry point.
               </h2>
-              <p className="text-cream/80 text-lg mb-6">
-                Alumni join BC + AI&apos;s professional community — monthly office hours, special
+              <p className="text-cream/75 text-lg sm:text-xl mb-8 max-w-xl mx-auto">
+                Alumni join BC + AI&apos;s professional community — office hours, special
                 interest groups, 850+ Discord members, ongoing education.
               </p>
               <Link
                 href="/cohorts"
-                className="inline-block px-6 py-3 bg-gold text-forest-950 font-semibold rounded hover:bg-yellow-400 transition-colors"
+                className="inline-block px-8 py-4 bg-orange text-cream font-bold rounded-lg hover:bg-orange/85 transition-colors text-lg glow-box"
               >
-                View 2026 Cohorts
+                View 2026 Cohorts →
               </Link>
             </div>
           </div>
         </div>
       </section>
 
-      {/* ── Cohort cards ── */}
-      <section className="max-w-6xl mx-auto px-4 sm:px-6 py-20">
-        <div className="text-center mb-12">
-          <p className="text-accent text-sm font-semibold uppercase tracking-widest mb-3">
-            2026 Cohorts
-          </p>
-          <h2 className="font-serif text-3xl sm:text-4xl text-cream font-bold">
-            Three opportunities this year.
-          </h2>
-        </div>
-
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
-          {[
-            {
-              name: "Cohort 1",
-              when: "May 2026",
-              format: "Online Pilot",
-              status: "Underway",
-              statusColor: "text-accent",
-              why: "Shape future cohorts. Smaller group. Direct instructor access.",
-            },
-            {
-              name: "Cohort 3",
-              when: "Aug–Sep 2026",
-              format: "Online Refined",
-              status: "Registration Opening",
-              statusColor: "text-gold",
-              why: "Refined based on Cohort 1 learnings. Online format, global participants.",
-            },
-            {
-              name: "Cohort 2",
-              when: "October 2026",
-              format: "In-Person Intensive",
-              status: "Planning",
-              statusColor: "text-blue",
-              why: "Flagship event during BC + AI Festival Week. Immersive format.",
-            },
-          ].map((c) => (
-            <div
-              key={c.name}
-              className="bg-forest-800 rounded-xl p-6 border border-forest-600 hover:border-forest-500 transition-colors"
-            >
-              <div className="flex justify-between items-start mb-4">
-                <div>
-                  <p className="text-cream font-serif font-bold text-xl">{c.name}</p>
-                  <p className="text-muted text-sm">{c.when}</p>
-                </div>
-                <span className={`text-xs font-semibold uppercase tracking-wider ${c.statusColor}`}>
-                  {c.status}
-                </span>
-              </div>
-              <p className="text-gold text-sm font-semibold mb-3">{c.format}</p>
-              <p className="text-muted text-sm leading-relaxed">{c.why}</p>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      {/* ── Pricing teaser ── */}
-      <section className="bg-forest-800/50 py-20">
+      {/* ── Pricing teaser with interactive toggle ── */}
+      <section className="py-16 sm:py-24 bg-forest-800/40">
         <div className="max-w-6xl mx-auto px-4 sm:px-6">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            <div>
-              <p className="text-accent text-sm font-semibold uppercase tracking-widest mb-4">
+            <ScrollReveal>
+              <p className="text-growth text-xs font-semibold uppercase tracking-[0.2em] mb-4">
                 Investment
               </p>
-              <h2 className="font-serif text-3xl sm:text-4xl text-cream font-bold mb-6">
+              <h2 className="font-serif text-3xl sm:text-4xl text-cream font-bold mb-4">
                 Membership math makes this a no-brainer.
               </h2>
-              <p className="text-muted leading-relaxed mb-6">
+              <p className="text-muted leading-relaxed mb-8">
                 BC + AI membership is $340/year. The member discount saves you $750 on RAP.
-                Net benefit:{" "}
-                <span className="text-gold font-semibold">$410 CAD</span> — plus ongoing
-                community access, events, and office hours.
+                Join first, save $410 net — plus you get ongoing community access,
+                events, and office hours year-round.
               </p>
-              <div className="grid grid-cols-2 gap-4 mb-6">
-                {[
-                  ["$600", "Early Bird Member"],
-                  ["$750", "BC + AI Member"],
-                  ["$1,200", "Early Bird"],
-                  ["$1,500", "Standard"],
-                ].map(([price, label]) => (
-                  <div key={label} className="bg-forest-800 rounded-lg p-4 border border-forest-600">
-                    <p className="text-gold font-serif font-bold text-2xl">{price}</p>
-                    <p className="text-muted text-sm">{label} <span className="text-muted/60">CAD</span></p>
-                  </div>
-                ))}
-              </div>
-              <Link
-                href="/pricing"
-                className="inline-block px-6 py-3 border border-forest-500 text-accent font-semibold rounded hover:border-accent transition-colors"
-              >
-                Full Pricing Details →
-              </Link>
-            </div>
+              <PricingToggle />
+            </ScrollReveal>
 
-            <div className="rounded-xl overflow-hidden border border-forest-600">
+            <ScrollReveal delay={120} className="relative rounded-2xl overflow-hidden">
               <div className="relative w-full" style={{ aspectRatio: "4/3" }}>
                 <Image
                   src="/images/05a-30seats-forest-gathering.png"
-                  alt="30 seats — forest gathering"
+                  alt="30 seats — intimate cohort gathering"
                   fill
                   className="object-cover"
                 />
+                <div className="absolute inset-0 bg-gradient-to-br from-transparent to-forest-900/60" />
+                <div className="absolute bottom-4 left-4 right-4">
+                  <div className="bg-forest-900/80 backdrop-blur-sm rounded-lg px-4 py-3 border border-forest-600">
+                    <p className="text-cream font-semibold">25–30 seats per cohort.</p>
+                    <p className="text-muted text-sm">Small enough to connect. Big enough for diverse perspectives.</p>
+                  </div>
+                </div>
               </div>
-            </div>
+            </ScrollReveal>
           </div>
         </div>
       </section>
 
       {/* ── Final CTA ── */}
-      <section className="max-w-6xl mx-auto px-4 sm:px-6 py-24 text-center">
-        <div className="max-w-2xl mx-auto">
-          <p className="text-accent text-sm font-semibold uppercase tracking-widest mb-4">
-            Ready?
-          </p>
-          <h2 className="font-serif text-4xl sm:text-5xl text-cream font-bold mb-6">
-            Build a practice,<br />not just a credential.
-          </h2>
-          <p className="text-muted text-lg mb-8">
-            25–30 participants per cohort. Small enough to connect, big enough for
-            diverse perspectives.
-          </p>
-          <div className="flex flex-wrap justify-center gap-4">
-            <Link
-              href="/enroll"
-              className="px-8 py-4 bg-gold text-forest-950 font-semibold text-lg rounded hover:bg-yellow-400 transition-colors"
-            >
-              Enroll Now
-            </Link>
-            <a
-              href="mailto:hello@bc-ai.ca"
-              className="px-8 py-4 border border-forest-500 text-cream font-semibold text-lg rounded hover:border-cream/60 transition-colors"
-            >
-              Ask a Question
-            </a>
+      <section className="relative overflow-hidden">
+        <div className="relative w-full" style={{ aspectRatio: "16/5", minHeight: 280 }}>
+          <Image
+            src="/images/10b-cta-dawn-breaking.png"
+            alt="Dawn breaking — lead with ethics"
+            fill
+            className="object-cover object-center"
+          />
+          <div className="absolute inset-0 bg-forest-900/80" />
+          <div className="absolute inset-0 flex items-center justify-center text-center px-4">
+            <div className="max-w-2xl">
+              <p className="text-growth text-xs font-semibold uppercase tracking-[0.2em] mb-4">
+                Ready?
+              </p>
+              <h2 className="font-serif text-4xl sm:text-5xl text-cream font-bold mb-4 glow-text">
+                Build a practice,<br />not just a credential.
+              </h2>
+              <p className="text-cream/70 text-lg mb-8">
+                25–30 participants per cohort. Small enough to connect, big enough for
+                diverse perspectives.
+              </p>
+              <div className="flex flex-wrap justify-center gap-4">
+                <Link
+                  href="/enroll"
+                  className="px-8 py-4 bg-orange text-cream font-bold text-lg rounded-lg hover:bg-orange/85 transition-colors glow-box"
+                >
+                  Enroll Now →
+                </Link>
+                <a
+                  href="mailto:hello@bc-ai.ca"
+                  className="px-8 py-4 border border-cream/30 text-cream font-semibold text-lg rounded-lg hover:border-cream/60 hover:bg-cream/5 transition-all"
+                >
+                  Ask a Question
+                </a>
+              </div>
+              <p className="text-muted text-sm mt-6">
+                Friday Office Hours: 12–1 PM PT · Free · Open to all
+              </p>
+            </div>
           </div>
-          <p className="text-muted text-sm mt-6">
-            Friday Office Hours: 12–1 PM PT · Free · Open to all
-          </p>
         </div>
       </section>
     </>

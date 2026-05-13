@@ -1,4 +1,5 @@
 import Link from "next/link";
+import BcAiLogo from "./BcAiLogo";
 
 export default function Footer() {
   return (
@@ -7,7 +8,11 @@ export default function Footer() {
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-8 mb-8">
           {/* Brand */}
           <div>
-            <p className="font-serif font-bold text-gold text-lg mb-2">RAP</p>
+            <div className="flex items-center gap-3 mb-3">
+              <BcAiLogo width={48} />
+              <span className="text-forest-600 text-lg font-light">|</span>
+              <span className="font-serif font-bold text-gold text-lg">RAP</span>
+            </div>
             <p className="text-muted text-sm leading-relaxed">
               Responsible AI Professional Certification. A program of BC + AI Ecosystem
               Association.
@@ -68,7 +73,7 @@ export default function Footer() {
             © 2026 BC + AI Ecosystem Association. On the unceded territories of the
             Musqueam, Squamish, and Tsleil-Waututh peoples.
           </p>
-          <p className="text-muted text-xs">Technology isn't neutral and neither are we.</p>
+          <p className="text-muted text-xs">Technology isn&apos;t neutral and neither are we.</p>
         </div>
       </div>
     </footer>
