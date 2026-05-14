@@ -1,7 +1,7 @@
 "use client";
 
 import { motion, useScroll, useSpring, useTransform } from "motion/react";
-import { useEffect, useRef, useState, ReactNode } from "react";
+import { useEffect, useLayoutEffect, useRef, useState, ReactNode } from "react";
 import useReducedMotion from "@/lib/useReducedMotion";
 
 interface Props {
@@ -20,6 +20,8 @@ export default function HorizontalScroller({
   const reduced = useReducedMotion();
   const [mobile, setMobile] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
+  const trackRef = useRef<HTMLDivElement>(null);
+  const [overflow, setOverflow] = useState(0);
 
   useEffect(() => {
     const mq = window.matchMedia("(max-width: 768px)");
@@ -29,19 +31,22 @@ export default function HorizontalScroller({
     return () => mq.removeEventListener("change", update);
   }, []);
 
+  useLayoutEffect(() => {
+    const track = trackRef.current;
+    if (!track) return;
+    const measure = () => setOverflow(track.scrollWidth - track.clientWidth);
+    measure();
+    const observer = new ResizeObserver(measure);
+    observer.observe(track);
+    return () => observer.disconnect();
+  }, []);
+
   const { scrollYProgress } = useScroll({
     target: ref,
     offset: ["start start", "end end"],
   });
 
-  // Map progress to x: cards fill the width, scroll covers from card 1 → card N
-  // We translate by (count - 1) * card-step. Each card is ~60vw with gap;
-  // simpler: translate by -((count - 1) / count) * 100% with extra padding.
-  const xRaw = useTransform(
-    scrollYProgress,
-    [0, 1],
-    ["0%", `-${(count - 1) * 70}%`]
-  );
+  const xRaw = useTransform(scrollYProgress, [0, 1], ["0px", `-${overflow}px`]);
   const x = useSpring(xRaw, { stiffness: 80, damping: 22, mass: 0.6 });
 
   const stackMode = mobile || reduced;
@@ -94,6 +99,7 @@ export default function HorizontalScroller({
           </header>
         )}
         <motion.div
+          ref={trackRef}
           style={{ x }}
           className="flex items-stretch gap-8 pl-6 sm:pl-10 will-change-transform"
         >
