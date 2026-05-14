@@ -1,7 +1,12 @@
 "use client";
 
 import Image from "next/image";
-import { motion, useScroll, useTransform } from "motion/react";
+import {
+  motion,
+  useScroll,
+  useTransform,
+  type MotionValue,
+} from "motion/react";
 import { useRef } from "react";
 import imageMeta from "@/lib/image-meta.json";
 import useReducedMotion from "@/lib/useReducedMotion";
@@ -20,6 +25,68 @@ interface Props {
   badges?: string[];
 }
 
+/**
+ * One crossfading portrait. Each instance owns exactly one `useTransform`
+ * call, so the parent can render N of these from `images.map(...)` without
+ * violating the rules-of-hooks (N is no longer hardcoded).
+ *
+ * Crossfade math: divide [0,1] scroll progress into `total` equal windows.
+ * Image `i` fades in approaching `i/total`, holds through `(i+1)/total`,
+ * fades out after — except the first holds from progress 0 and the last
+ * holds to progress 1.
+ */
+function CrossfadeImage({
+  src,
+  alt,
+  blurDataURL,
+  index,
+  total,
+  progress,
+}: {
+  src: string;
+  alt: string;
+  blurDataURL?: string;
+  index: number;
+  total: number;
+  progress: MotionValue<number>;
+}) {
+  const w = 1 / total;
+  const isFirst = index === 0;
+  const isLast = index === total - 1;
+
+  // Monotonically non-decreasing input keyframes (duplicates at the edges
+  // are allowed and pin the first/last image visible at the scroll bounds).
+  const inputs: [number, number, number, number] = [
+    isFirst ? 0 : (index - 0.4) * w,
+    isFirst ? 0 : index * w,
+    isLast ? 1 : (index + 1) * w,
+    isLast ? 1 : (index + 1.4) * w,
+  ];
+  const outputs: [number, number, number, number] = [
+    isFirst ? 1 : 0,
+    1,
+    1,
+    isLast ? 1 : 0,
+  ];
+
+  const opacity = useTransform(progress, inputs, outputs);
+
+  return (
+    <motion.div style={{ opacity }} className="absolute inset-0">
+      <Image
+        src={src}
+        alt={alt}
+        fill
+        sizes="(max-width: 1024px) 100vw, 50vw"
+        loading="lazy"
+        placeholder={blurDataURL ? "blur" : undefined}
+        blurDataURL={blurDataURL}
+        className="object-cover"
+      />
+    </motion.div>
+  );
+}
+
 export default function InstructorPortrait({
   name,
   role,
@@ -35,36 +102,38 @@ export default function InstructorPortrait({
     offset: ["start end", "end start"],
   });
 
-  // Crossfade across scroll progress. Hooks must be unconditional — fixed N=3.
-  const op0 = useTransform(scrollYProgress, [0.0, 0.25, 0.4], [1, 1, 0]);
-  const op1 = useTransform(scrollYProgress, [0.25, 0.4, 0.6, 0.75], [0, 1, 1, 0]);
-  const op2 = useTransform(scrollYProgress, [0.6, 0.75, 1.0], [0, 1, 1]);
-  const opacities = [op0, op1, op2];
+  // Reduced motion: show only the first image, no crossfade.
+  const shown = reduced ? images.slice(0, 1) : images;
 
   const imageCol = (
     <div className="relative w-full">
       <div className="lg:sticky lg:top-24 h-[60vh] lg:h-[78vh] rounded-2xl overflow-hidden bg-forest-900">
-        {(reduced ? images.slice(0, 1) : images).map((src, i) => {
-          const blur = meta[src]?.blurDataURL;
-          return (
-            <motion.div
+        {reduced ? (
+          <div className="absolute inset-0">
+            <Image
+              src={shown[0]}
+              alt={`${name} — portrait`}
+              fill
+              sizes="(max-width: 1024px) 100vw, 50vw"
+              loading="lazy"
+              placeholder={meta[shown[0]]?.blurDataURL ? "blur" : undefined}
+              blurDataURL={meta[shown[0]]?.blurDataURL}
+              className="object-cover"
+            />
+          </div>
+        ) : (
+          shown.map((src, i) => (
+            <CrossfadeImage
               key={src}
-              style={reduced ? undefined : { opacity: opacities[i] }}
-              className="absolute inset-0"
-            >
-              <Image
-                src={src}
-                alt={i === 0 ? `${name} — portrait` : ""}
-                fill
-                sizes="(max-width: 1024px) 100vw, 50vw"
-                loading="lazy"
-                placeholder={blur ? "blur" : undefined}
-                blurDataURL={blur}
-                className="object-cover"
-              />
-            </motion.div>
-          );
-        })}
+              src={src}
+              alt={i === 0 ? `${name} — portrait` : ""}
+              blurDataURL={meta[src]?.blurDataURL}
+              index={i}
+              total={shown.length}
+              progress={scrollYProgress}
+            />
+          ))
+        )}
         <div className="absolute inset-0 bg-gradient-to-t from-forest-950/40 via-transparent to-transparent pointer-events-none" />
       </div>
     </div>
