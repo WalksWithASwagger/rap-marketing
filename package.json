@@ -6,7 +6,11 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "optimize:images": "node scripts/optimize-images.mjs"
+    "optimize:images": "node scripts/optimize-images.mjs",
+    "lighthouse": "lhci autorun",
+    "axe": "node scripts/run-axe.mjs",
+    "axe:serve": "next start & SERVER_PID=$!; npx wait-on http://localhost:3000 && node scripts/run-axe.mjs; STATUS=$?; kill $SERVER_PID; exit $STATUS",
+    "audit": "npm run build && npm run lighthouse; npm run axe:serve"
   },
   "dependencies": {
     "@vercel/analytics": "^2.0.1",
@@ -25,12 +29,15 @@
   },
   "devDependencies": {
     "@axe-core/cli": "^4.11.3",
+    "@axe-core/puppeteer": "^4.11.3",
     "@lhci/cli": "^0.15.1",
     "@tailwindcss/postcss": "^4",
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
+    "puppeteer": "^24.43.1",
     "tailwindcss": "^4",
-    "typescript": "^5"
+    "typescript": "^5",
+    "wait-on": "^8.0.5"
   }
 }
