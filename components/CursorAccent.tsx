@@ -41,12 +41,12 @@ export default function CursorAccent() {
       <motion.div
         aria-hidden
         style={{ translateX: ringX, translateY: ringY }}
-        className="pointer-events-none fixed left-0 top-0 z-[60] -ml-4 -mt-4 h-8 w-8 rounded-full border border-[#00DDCC]/60 mix-blend-screen"
+        className="pointer-events-none fixed left-0 top-0 z-[60] -ml-4 -mt-4 h-8 w-8 rounded-full border border-cyan/60 mix-blend-screen"
       />
       <motion.div
         aria-hidden
         style={{ translateX: dotX, translateY: dotY }}
-        className="pointer-events-none fixed left-0 top-0 z-[60] -ml-[3px] -mt-[3px] h-[6px] w-[6px] rounded-full bg-[#00DDCC] mix-blend-screen"
+        className="pointer-events-none fixed left-0 top-0 z-[60] -ml-[3px] -mt-[3px] h-[6px] w-[6px] rounded-full bg-cyan mix-blend-screen"
       />
     </>
   );

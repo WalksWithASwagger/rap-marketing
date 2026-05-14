@@ -118,7 +118,7 @@ export default function PricingToggle({
         <button
           onClick={() => setIsMember((v) => !v)}
           className="relative w-14 h-7 rounded-full transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-cyan"
-          style={{ backgroundColor: isMember ? "#00DDCC" : "#3a6644" }}
+          style={{ backgroundColor: isMember ? "var(--color-cyan)" : "var(--color-forest-600)" }}
           aria-label="Toggle BC + AI membership pricing"
           role="switch"
           aria-checked={isMember}

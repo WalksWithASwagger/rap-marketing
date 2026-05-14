@@ -98,7 +98,7 @@ export default function CohortCard({ cohort, index = 0 }: Props) {
                 initial={reduced ? { width: `${seatsPct}%` } : { width: 0 }}
                 whileInView={{ width: `${seatsPct}%` }}
                 viewport={{ once: true, margin: "-10% 0px" }}
-                transition={{ duration: 1, delay: 0.3 + index * 0.12, ease: EASE }}
+                transition={{ duration: 0.6, delay: 0.3 + index * 0.12, ease: EASE }}
                 className="block h-full bg-cyan shadow-[0_0_12px_rgba(0,221,204,0.7)]"
               />
             </span>

@@ -107,7 +107,7 @@ export default function FaqAccordion({ items }: Props) {
                   animate={{ height: "auto", opacity: 1 }}
                   exit={reduced ? { height: 0, opacity: 0 } : { height: 0, opacity: 0 }}
                   transition={{
-                    duration: reduced ? 0 : 0.32,
+                    duration: reduced ? 0 : 0.6,
                     ease: [0.16, 1, 0.3, 1],
                   }}
                   className="overflow-hidden"
