@@ -1,12 +1,6 @@
 "use client";
 
-import {
-  animate,
-  motion,
-  useInView,
-  useMotionValue,
-  useTransform,
-} from "motion/react";
+import { useInView } from "motion/react";
 import { useEffect, useRef, useState } from "react";
 import useReducedMotion from "@/lib/useReducedMotion";
 
@@ -19,6 +13,9 @@ interface Props {
   glow?: boolean;
 }
 
+// Simple, reliable count-up via requestAnimationFrame.
+// No motion-value subscription — the motion/react version was silently
+// failing in production (counters stayed at 0).
 export default function AnimatedCounter({
   target,
   suffix = "",
@@ -30,45 +27,40 @@ export default function AnimatedCounter({
   const reduced = useReducedMotion();
   const ref = useRef<HTMLSpanElement>(null);
   const inView = useInView(ref, { once: true, margin: "0px 0px -10% 0px" });
-
-  const mv = useMotionValue(0);
   const [display, setDisplay] = useState(reduced ? target : 0);
 
-  const textShadow = useTransform(mv, (v) => {
-    if (!glow) return "none";
-    const t = Math.max(0, Math.min(1, v / Math.max(target, 1)));
-    const a = 0.7 * Math.sin(t * Math.PI);
-    return `0 0 ${10 + a * 30}px rgba(0, 221, 204, ${a.toFixed(3)})`;
-  });
-
-  // Drive a tween on the motion value, render its current rounded integer.
   useEffect(() => {
     if (reduced) {
-      mv.set(target);
       setDisplay(target);
       return;
     }
     if (!inView) return;
-    const controls = animate(mv, target, {
-      duration: duration / 1000,
-      ease: [0.16, 1, 0.3, 1],
-    });
-    return () => controls.stop();
-  }, [inView, mv, target, reduced, duration]);
+    let raf = 0;
+    const start =
+      typeof performance !== "undefined" ? performance.now() : Date.now();
+    const tick = (now: number) => {
+      const t = Math.min((now - start) / duration, 1);
+      const eased = 1 - Math.pow(1 - t, 3); // ease-out cubic
+      setDisplay(Math.round(eased * target));
+      if (t < 1) raf = requestAnimationFrame(tick);
+    };
+    raf = requestAnimationFrame(tick);
+    return () => cancelAnimationFrame(raf);
+  }, [inView, target, reduced, duration]);
 
-  useEffect(() => {
-    return mv.on("change", (v) => setDisplay(Math.round(v)));
-  }, [mv]);
+  // Cyan glow tied to count progress. Pure CSS calc on display.
+  const progress = Math.max(0, Math.min(1, display / Math.max(target, 1)));
+  const glowAlpha = 0.7 * Math.sin(progress * Math.PI);
+  const textShadow =
+    glow && !reduced && glowAlpha > 0.02
+      ? `0 0 ${10 + glowAlpha * 30}px rgba(0, 221, 204, ${glowAlpha.toFixed(3)})`
+      : undefined;
 
   return (
-    <motion.span
-      ref={ref}
-      style={glow && !reduced ? { textShadow } : undefined}
-      className={className}
-    >
+    <span ref={ref} className={className} style={textShadow ? { textShadow } : undefined}>
       {prefix}
       {display}
       {suffix}
-    </motion.span>
+    </span>
   );
 }
