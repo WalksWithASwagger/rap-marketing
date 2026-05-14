@@ -130,8 +130,8 @@ export default function Home() {
     <>
       {/* 1 — Cinematic hero */}
       <Hero
-        image="/images/03b-team-connected-minds.png"
-        imageAlt="A network of connected minds, glowing at the edges of a forest at first light"
+        image="/images/07a-alumni-growing-roots.png"
+        imageAlt="A forest mycelial network at twilight — interconnected roots and bioluminescent points of light"
         eyebrow="Responsible AI Professional · Cohort 1"
         headline="Lead the room when AI walks in."
         sub="A 4-week certification for the people who have to answer for the AI decisions their organizations make."
