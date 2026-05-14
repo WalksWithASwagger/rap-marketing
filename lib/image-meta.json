@@ -75,9 +75,9 @@
     "original": "/images/04a-curriculum-journey-arc.png",
     "avif": "/images/optimized/04a-curriculum-journey-arc.avif",
     "webp": "/images/optimized/04a-curriculum-journey-arc.webp",
-    "width": 1024,
+    "width": 1536,
     "height": 1024,
-    "blurDataURL": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAIAAAACUFjqAAAACXBIWXMAAAsTAAALEwEAmpwYAAABQUlEQVR4nAE2Acn+AD5zfhU3SiVSWBU5RgAXJB9HU1SUlg4wPR5GVVSVmQBMi4k5aXwWO0ggS1ADISwyY2ksW2IRM0NOjJFBeX0AEDQ9TImMJ1FjFz5GDjI7KltdEjZBbH1y/+CtRk1MADNnWbD/x1abkTNgch9JUFNgg46Gx7K7qv/YpUpSUAAiT0990Jd2yqes+v+DzOiOj8Hqx/9VgIUQND0QM0EADi5AIk1SVZiCd8TNbrbDVY2UYpmbJk5UFTlGGT9MAA81MyRRUxc7SylYXEuLhkmHhTNmaR1FUR9HUhA1OgAABwwPNTMmVFkjTlgyY2k9dngjTlghS1MPNTQAGRgAIy8kFyskBignGURAEDU6Fj5BDjM0CCslDCopDCEkADdAKxspHgAJDh4wJhwyKR00KiI0KgAPDR0xNiU4PMm/Xim+b36jAAAAAElFTkSuQmCC"
+    "blurDataURL": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAHCAIAAAC+zks0AAAACXBIWXMAAAsTAAALEwEAmpwYAAAA2UlEQVR4nGP48P7l+7cvIOjd2xevXz798e3Dl68fvn15f+fuLQaIxNvXz16/fPrty7u/f76dPns2KbdG3sSLQUyX4e3r529eP/v25e2/f9/WbtnrGFVu7JMamVq6dsPWJ0/ug3T//vXp3OWrks7JDIZBc5Zv/Prl3e9fX3/++Pjp/WuGb1/expVNYOC19c5ofPLk0e9fn16/fPL82aPXL5+8ef2MgUEvnIHBbPmmvf/+fXvz+tnLF4/fvn72BozevX3OwMBrs+/o6T+/Pr188fgdzJnv3j6HIABNhKInTNv9gwAAAABJRU5ErkJggg=="
   },
   "/images/04b-curriculum-growing-seasons.png": {
     "original": "/images/04b-curriculum-growing-seasons.png",
@@ -131,9 +131,9 @@
     "original": "/images/06b-frameworks-hub-spokes.png",
     "avif": "/images/optimized/06b-frameworks-hub-spokes.avif",
     "webp": "/images/optimized/06b-frameworks-hub-spokes.webp",
-    "width": 1024,
+    "width": 1536,
     "height": 1024,
-    "blurDataURL": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAIAAAACUFjqAAAACXBIWXMAAAsTAAALEwEAmpwYAAABQUlEQVR4nAE2Acn+AA4qFBw+Hhw7HRw7KRc0KAAaDgAaCgAaDA0qFBY2GAApUCQmTCElSh8sUiYNKRgAAwAAFQQAFwARMhEWOhoAEjMVQ3E2hcRnI0geNlw1J0kwABkUZKq7IUtDABUAAAATACpUK3SxaTBTNJ++huL/vihPOVCPrQ86OgAKAAAAHw0AGgovWUNiil9ogFiConR9qXY+aDwOLBABHA4AAh8NABUALVs6ZpZsUnZMWHxRU4FdMGFEIUglNFspAAAaADM7P5V4qho4KWCKYWWTaR4yHv+7eHF0PRdBGgAaQRhHXkJ1bXsOKx4oTz0qVUEcNiS7glNMVSoSOhcAIEQfGT4ZCzQNGjwgOlpBPGBAH0EwABIIAA4AAhwNAAYiEAcgEhAvFyBGHxY6GA8tGhk4LAoiFQIcEwUgFtm3QgflJ/q9AAAAAElFTkSuQmCC"
+    "blurDataURL": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAHCAIAAAC+zks0AAAACXBIWXMAAAsTAAALEwEAmpwYAAAA3ElEQVR4nGN4/+7l+3cv3755/u3Lu5X79qzct+f7t3cQwffvXjK8f/fy1aunf39/rZ+/iEFUiUFUpWHxyr+/vr569fTDu5cM7948f/Pm+fcv7zUzchmUdBhUlOMKY359fvnmzQuw9LsX37+8m7Fpk2VZNYOnu3egxs4mpdu7uz58/vzuzTOGtyCt73pXrTKvbPDJjJxRIHeoSfjKptpPXz6BpD+8e/npw6v7j+61Llsxed3aq1sar6wtfv3k+ocPbz+8ewGSfg9W8f3Lu+9fPn758uXj508fPkAdDwCdm54fyJ26YgAAAABJRU5ErkJggg=="
   },
   "/images/06c-frameworks-shield-quarters.png": {
     "original": "/images/06c-frameworks-shield-quarters.png",
@@ -147,9 +147,9 @@
     "original": "/images/07a-alumni-growing-roots.png",
     "avif": "/images/optimized/07a-alumni-growing-roots.avif",
     "webp": "/images/optimized/07a-alumni-growing-roots.webp",
-    "width": 1024,
+    "width": 1536,
     "height": 1024,
-    "blurDataURL": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAIAAAACUFjqAAAACXBIWXMAAAsTAAALEwEAmpwYAAABQUlEQVR4nAE2Acn+ABMlACdIBiM8AytKJihFKxczFwANAAAUABY2ACZGBQBLcyDV8a6Pt1xeijFYeU1WdVg8VjyTp4EiRwUsTwoAL1ELcZhScJpVg7pdlNF3T4lNQ2lHXX5TOFYwByAAABMtEDZaK3upcqPmjr//lMf/pXi9cSJRJcHVuEtjRwAAHgAnSihelFuU035nhkyJt3Kn8JJwql0qTx8AGwAADiwIS2pMPXE9js14QWM3V39LqvCTcatf0vawfaBMAAIdABMzDDFYMW6rbJPTgKPqjozPgk5+RFZ/OU90IgA2XRJPeSN3nlBkil9Pf1RKgUslUyeZtoJ4l1oeQQMANFcOK08KM1QTQV8iYHpBXH00SWc3VWZULj0uAAoAAAMaAAASABo3AD9jFiZJBhkzDStGKwAUAAANAA0iCDRyYk8pFrs4AAAAAElFTkSuQmCC"
+    "blurDataURL": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAHCAIAAAC+zks0AAAACXBIWXMAAAsTAAALEwEAmpwYAAAA30lEQVR4nGM4dGhfb2/nhQunHz28c/XKhUOH9j1+dO/RwzuPHt55/OgeQ319pZ6hVkJiTHhESGFRbl1d5bTpk2rrKhKSYpcvX8xQXVOqrCJrZWNuZWNua2+dkBgTEhqgb6TDwMCQm5fJsHz5woTEGH4hbnEpESsb85zcDH0jHSUVeSUV+bb2JobZs6dBlHt4udjaWYqICxibGKioKYWGBXZ2tYJ05+RmpKTGJ6fEqagp8QtxQywyszLesGkNw6OHd65cPnfs6IGdOzYvX754y5b1vb2dW7as37Jl/ZXL5wBhLl4OV5BvfwAAAABJRU5ErkJggg=="
   },
   "/images/07b-alumni-orbital-community.png": {
     "original": "/images/07b-alumni-orbital-community.png",
@@ -163,9 +163,9 @@
     "original": "/images/07c-alumni-forest-canopy.png",
     "avif": "/images/optimized/07c-alumni-forest-canopy.avif",
     "webp": "/images/optimized/07c-alumni-forest-canopy.webp",
-    "width": 1344,
-    "height": 768,
-    "blurDataURL": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAGCAIAAAB1kpiRAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAw0lEQVR4nGNg4BGTtzKWUZPmkBFXczLXdjIydjNnEBViEJRgAAFeVn4NlabZTf5ZXo3TMi49WB9bFW3i66RsqC6lrsogKCGoZKBkEeo0f1v1nY+L3/7fVj8rqXF2hWeSP4O0BAObkoKuu01Zf/GijWV9y0pXHe/eerwtpS5TQElSTE6UQVlbTcPS0Dc1aPbG9itP5h8419+zpMnKz4ZbQZZBUIjB3sGQgZ9PQVfeIdLbPMzdNcg2LCtcRE/J3FqbQ0wcAAJINuhXUx7HAAAAAElFTkSuQmCC"
+    "width": 1536,
+    "height": 1024,
+    "blurDataURL": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAHCAIAAAC+zks0AAAACXBIWXMAAAsTAAALEwEAmpwYAAAAuUlEQVR4nC3KS26CUACF4V+0idTHNRACRayx2NCmFeUtehWCo866hO7CgZtxkx1rLjH5cvIPDvTXSm/10F/TCRHR5fzXneUw3CAiZdgSMU8b3Pz2f33PTjBJGMWPNTIVRqaaED0Cr2S5Z5xjttQvxS5wC6Yl1lG+/RwsWTPfYRZM5SCtrIN8jtPu9xHN98ZJ4FSrl6YU28Zp6uBXWlWqfXyZ+xheHfwZnq2Hvsg/mbu9YKGHy1ES4Nl39YUahE8SFywAAAAASUVORK5CYII="
   },
   "/images/08a-practical-theory-vs-practice.png": {
     "original": "/images/08a-practical-theory-vs-practice.png",
