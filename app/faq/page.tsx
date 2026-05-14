@@ -26,6 +26,10 @@ export const metadata: Metadata = {
 
 const faqs: FaqItem[] = [
   {
+    q: "How do I register?",
+    a: "Registration runs through Luma at lu.ma/ai-ethics. Pick your cohort, reserve a seat — BC + AI members select the member tier for the discount; non-members select Standard. Confirmed enrollees get a welcome email with Zoom link and pre-reading within 48 hours.",
+  },
+  {
     q: "Who is this for?",
     a: "Operators, founders, and team leads who have to make AI calls and want to do it well. Not for ML researchers — there's no math you need to know.",
   },

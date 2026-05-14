@@ -1,3 +1,5 @@
+import { REGISTRATION_URL } from "@/lib/links";
+
 export interface Cohort {
   id: string;
   label: string;
@@ -17,7 +19,7 @@ export interface Cohort {
   inPerson?: boolean;
 }
 
-const ENROLL = "https://rap-course-delta.vercel.app/enroll/";
+const ENROLL = REGISTRATION_URL;
 
 export const cohorts: Cohort[] = [
   {

@@ -3,6 +3,7 @@ import Image from "next/image";
 import MagneticButton from "@/components/MagneticButton";
 import InstructorPortrait from "@/components/InstructorPortrait";
 import imageMeta from "@/lib/image-meta.json";
+import { REGISTRATION_URL } from "@/lib/links";
 
 type Meta = Record<string, { blurDataURL?: string }>;
 const meta = imageMeta as Meta;
@@ -156,7 +157,7 @@ export default function InstructorsPage() {
             </h2>
             <div className="flex flex-wrap justify-center gap-4">
               <MagneticButton
-                href="https://rap-course-delta.vercel.app/enroll/"
+                href={REGISTRATION_URL}
                 external
                 variant="primary"
               >

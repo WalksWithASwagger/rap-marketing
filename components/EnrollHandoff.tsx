@@ -54,10 +54,10 @@ export default function EnrollHandoff({ redirectUrl, delayMs = 2000 }: Props) {
         Handoff
       </p>
       <h1 className="font-serif text-3xl sm:text-4xl text-cream font-bold mb-4 leading-tight">
-        You&apos;re heading to your enrollment form.
+        You&apos;re heading to Luma.
       </h1>
       <p className="text-cream/75 leading-relaxed mb-8">
-        Same program, same team, hosted on the course platform.
+        RAP registration runs through <span className="text-cream">lu.ma/ai-ethics</span> — pick your cohort, reserve a seat, and you&apos;re in.
       </p>
 
       {/* Manual link — always present, focusable from t=0 */}
@@ -65,7 +65,7 @@ export default function EnrollHandoff({ redirectUrl, delayMs = 2000 }: Props) {
         href={redirectUrl}
         className="inline-flex items-center gap-2 px-6 py-3 bg-cyan text-forest-950 font-semibold rounded-full hover:bg-cyan/90 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cream"
       >
-        Continue to enrollment →
+        Continue to Luma →
       </a>
 
       {!reduced && (

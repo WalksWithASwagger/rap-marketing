@@ -10,9 +10,10 @@ import AnimatedCounter from "@/components/AnimatedCounter";
 import ScrollReveal from "@/components/ScrollReveal";
 import MagneticButton from "@/components/MagneticButton";
 import imageMeta from "@/lib/image-meta.json";
+import { REGISTRATION_URL } from "@/lib/links";
 import { cohorts as cohortsData } from "@/data/cohorts";
 
-const ENROLL_URL = "https://rap-course-delta.vercel.app/enroll/";
+const ENROLL_URL = REGISTRATION_URL;
 
 const meta = imageMeta as Record<string, { blurDataURL?: string }>;
 

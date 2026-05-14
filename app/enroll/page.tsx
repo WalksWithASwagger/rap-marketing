@@ -2,29 +2,28 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import EnrollHandoff from "@/components/EnrollHandoff";
 import imageMeta from "@/lib/image-meta.json";
+import { REGISTRATION_URL } from "@/lib/links";
 
 type Meta = Record<string, { blurDataURL?: string }>;
 const meta = imageMeta as Meta;
 
-const REDIRECT_URL = "https://rap-course-delta.vercel.app/enroll/";
+const REDIRECT_URL = REGISTRATION_URL;
 
 export const metadata: Metadata = {
   title: "Enroll",
   description:
-    "Heading to the RAP enrollment form. Same program, same team, hosted on the course platform.",
+    "Heading to RAP registration on Luma. Pick your cohort and reserve a seat.",
   alternates: { canonical: "/enroll" },
   openGraph: {
     title: "Enroll in RAP",
-    description:
-      "Same program, same team — heading to the enrollment form on the course platform.",
+    description: "Heading to RAP registration on Luma — pick your cohort.",
     url: "/enroll",
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
     title: "Enroll in RAP",
-    description:
-      "Same program, same team — heading to the enrollment form on the course platform.",
+    description: "Heading to RAP registration on Luma — pick your cohort.",
   },
 };
 

@@ -1,3 +1,5 @@
+import { REGISTRATION_URL } from "@/lib/links";
+
 export interface QuizQuestion {
   prompt: string;
   options: string[];
@@ -22,7 +24,7 @@ export interface ModuleData {
   quizSamples: QuizQuestion[];
 }
 
-export const ENROLL_URL = "https://rap-course-delta.vercel.app/enroll/";
+export const ENROLL_URL = REGISTRATION_URL;
 
 export const modules: ModuleData[] = [
   {

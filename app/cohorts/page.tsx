@@ -5,6 +5,7 @@ import MagneticButton from "@/components/MagneticButton";
 import ScrollReveal from "@/components/ScrollReveal";
 import CohortCard from "@/components/CohortCard";
 import { cohorts, cohortById } from "@/data/cohorts";
+import { REGISTRATION_URL } from "@/lib/links";
 import imageMeta from "@/lib/image-meta.json";
 
 type Meta = Record<string, { blurDataURL?: string }>;
@@ -30,7 +31,7 @@ export const metadata: Metadata = {
   },
 };
 
-const ENROLL_URL = "https://rap-course-delta.vercel.app/enroll/";
+const ENROLL_URL = REGISTRATION_URL;
 
 export default function CohortsPage() {
   const festival = cohortById("c2-oct");
