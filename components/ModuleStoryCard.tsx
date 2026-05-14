@@ -38,7 +38,10 @@ export default function ModuleStoryCard({ module: m }: Props) {
         blurDataURL={blur}
         className="object-cover"
       />
-      <div className="absolute inset-0 bg-gradient-to-tr from-forest-950/95 via-forest-950/55 to-forest-950/10" />
+      {/* Heavy scrim — carousel-week*.png assets have baked-in AI text; we
+          obscure it and keep the image as moody texture only. */}
+      <div className="absolute inset-0 bg-forest-950/80" />
+      <div className="absolute inset-0 bg-gradient-to-tr from-forest-950/85 via-forest-950/55 to-forest-950/35" />
 
       <div className="relative h-full flex flex-col justify-between p-8 sm:p-12">
         <div>
