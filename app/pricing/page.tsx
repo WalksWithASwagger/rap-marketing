@@ -4,6 +4,7 @@ import MagneticButton from "@/components/MagneticButton";
 import PricingToggle from "@/components/PricingToggle";
 import PricingCards from "@/components/PricingCards";
 import ScrollReveal from "@/components/ScrollReveal";
+import EnrollAsyncButton from "@/components/EnrollAsyncButton";
 import imageMeta from "@/lib/image-meta.json";
 
 type Meta = Record<string, { blurDataURL?: string }>;
@@ -93,6 +94,41 @@ export default function PricingPage() {
               </div>
             </ScrollReveal>
           </div>
+        </div>
+      </section>
+
+      {/* 2b. Self-paced option (Stripe checkout) */}
+      <section className="bg-forest-950 border-t border-forest-700/60 pb-24">
+        <div className="max-w-6xl mx-auto px-6 sm:px-10">
+          <ScrollReveal>
+            <div className="bg-forest-900/60 border border-forest-700 rounded-2xl p-8 sm:p-10">
+              <p className="text-cyan text-xs font-semibold uppercase tracking-[0.28em] mb-4">
+                Or take it self-paced
+              </p>
+              <div className="grid grid-cols-1 lg:grid-cols-[1fr_auto] gap-8 lg:gap-12 items-start lg:items-center">
+                <div>
+                  <h2 className="font-serif text-cream text-3xl sm:text-4xl font-semibold mb-4 leading-tight">
+                    RAP Async Self-Paced Course
+                  </h2>
+                  <p className="text-cream/80 leading-relaxed mb-3">
+                    Same curriculum as the live cohort — four modules, twenty interactive widgets, five artifact builders, four quizzes, and a certificate of completion. Take it on your own schedule.
+                  </p>
+                  <p className="text-cream/60 text-sm">
+                    BC + AI members: use code <span className="text-cyan font-mono">BCAI50</span> at checkout for 50% off ($449).
+                  </p>
+                </div>
+                <div className="flex flex-col items-start gap-3">
+                  <p className="font-serif text-cream text-4xl sm:text-5xl font-semibold">
+                    $899 <span className="text-cream/60 text-base font-sans">CAD</span>
+                  </p>
+                  <EnrollAsyncButton
+                    slug="async-self-paced"
+                    label="Enroll — Self-Paced →"
+                  />
+                </div>
+              </div>
+            </div>
+          </ScrollReveal>
         </div>
       </section>
 

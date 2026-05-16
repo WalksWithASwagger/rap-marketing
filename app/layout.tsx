@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Fraunces, Inter } from "next/font/google";
 import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
+import { ClerkProvider } from "@clerk/nextjs";
 import "./globals.css";
 import Nav from "@/components/Nav";
 import Footer from "@/components/Footer";
@@ -63,25 +64,27 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`h-full ${fraunces.variable} ${inter.variable}`}>
-      <body className="min-h-full flex flex-col antialiased">
-        <a
-          href="#main"
-          className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-[1000] focus:rounded focus:bg-cyan-400 focus:px-4 focus:py-2 focus:text-forest-900 focus:outline-none focus:ring-2 focus:ring-cyan-300"
-        >
-          Skip to content
-        </a>
-        <SmoothScroll />
-        <ScrollProgress />
-        <CursorAccent />
-        <Nav />
-        <main id="main" className="flex-1">
-          <PageTransition>{children}</PageTransition>
-        </main>
-        <Footer />
-        <Analytics />
-        <SpeedInsights />
-      </body>
-    </html>
+    <ClerkProvider>
+      <html lang="en" className={`h-full ${fraunces.variable} ${inter.variable}`}>
+        <body className="min-h-full flex flex-col antialiased">
+          <a
+            href="#main"
+            className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-[1000] focus:rounded focus:bg-cyan-400 focus:px-4 focus:py-2 focus:text-forest-900 focus:outline-none focus:ring-2 focus:ring-cyan-300"
+          >
+            Skip to content
+          </a>
+          <SmoothScroll />
+          <ScrollProgress />
+          <CursorAccent />
+          <Nav />
+          <main id="main" className="flex-1">
+            <PageTransition>{children}</PageTransition>
+          </main>
+          <Footer />
+          <Analytics />
+          <SpeedInsights />
+        </body>
+      </html>
+    </ClerkProvider>
   );
 }
