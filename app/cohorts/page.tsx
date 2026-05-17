@@ -94,7 +94,7 @@ export default function CohortsPage() {
             <div className="relative aspect-[16/7] rounded-2xl overflow-hidden my-10">
               <Image
                 src="/images/mkt-trust-card.png"
-                alt="A week in the cohort — live calls, async widgets, office hours"
+                alt="A week in the cohort — live calls, between-session widgets, office hours"
                 fill
                 sizes="(max-width: 768px) 100vw, 768px"
                 loading="lazy"
@@ -108,15 +108,15 @@ export default function CohortsPage() {
 
           <ScrollReveal delay={300}>
             <p className="text-cream/85 leading-relaxed text-lg">
-              90-minute live Zoom each week. Async widgets and artifacts between
-              sessions. Office hours every Friday. Total commitment: 12–16 hours
-              over 4 weeks.
+              90-minute live Zoom each week. Self-directed widgets and artifacts
+              between sessions. Office hours every Friday. Total commitment: 12–16
+              hours over 4 weeks.
             </p>
 
             <dl className="mt-10 grid grid-cols-1 sm:grid-cols-2 gap-6">
               {[
                 ["Live Zoom", "90 minutes weekly, one cohort, no recordings as a primary path."],
-                ["Async work", "Widgets and artifacts between sessions — paced, not crushing."],
+                ["Between sessions", "Widgets and artifacts on your own time — paced, not crushing."],
                 ["Office hours", "Every Friday, optional, instructor-led."],
                 ["Total time", "12–16 hours over 4 weeks. Designed for working professionals."],
               ].map(([dt, dd]) => (
@@ -134,8 +134,8 @@ export default function CohortsPage() {
 
       {/* 4 — Festival Week callout (Cohort 2) */}
       {festival && (
-        <section className="relative overflow-hidden">
-          <div className="relative h-[80vh] min-h-[520px]">
+        <section className="relative isolate">
+          <div className="relative h-[80vh] min-h-[520px] overflow-hidden rounded-none">
             <Image
               src="/images/05b-30seats-campfire-circle.png"
               alt="Twenty seats around a campfire — BC+AI Festival Week"

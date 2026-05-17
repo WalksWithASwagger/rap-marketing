@@ -107,7 +107,7 @@ export default function InstructorPortrait({
 
   const imageCol = (
     <div className="relative w-full">
-      <div className="lg:sticky lg:top-24 h-[60vh] lg:h-[78vh] rounded-2xl overflow-hidden bg-forest-900">
+      <div className="lg:sticky lg:top-24 h-[min(60vh,520px)] lg:h-[78vh] rounded-2xl overflow-hidden bg-forest-900">
         {reduced ? (
           <div className="absolute inset-0">
             <Image

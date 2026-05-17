@@ -97,18 +97,18 @@ export default function PricingPage() {
         </div>
       </section>
 
-      {/* 2b. Self-paced option (Stripe checkout) */}
+      {/* 2b. RAP Self-Study (Stripe checkout) */}
       <section className="bg-forest-950 border-t border-forest-700/60 pb-24">
         <div className="max-w-6xl mx-auto px-6 sm:px-10">
           <ScrollReveal>
             <div className="bg-forest-900/60 border border-forest-700 rounded-2xl p-8 sm:p-10">
               <p className="text-cyan text-xs font-semibold uppercase tracking-[0.28em] mb-4">
-                Or take it self-paced
+                Or take it on your own time
               </p>
               <div className="grid grid-cols-1 lg:grid-cols-[1fr_auto] gap-8 lg:gap-12 items-start lg:items-center">
                 <div>
                   <h2 className="font-serif text-cream text-3xl sm:text-4xl font-semibold mb-4 leading-tight">
-                    RAP Async Self-Paced Course
+                    RAP Self-Study
                   </h2>
                   <p className="text-cream/80 leading-relaxed mb-3">
                     Same curriculum as the live cohort — four modules, twenty interactive widgets, five artifact builders, four quizzes, and a certificate of completion. Take it on your own schedule.
@@ -123,7 +123,7 @@ export default function PricingPage() {
                   </p>
                   <EnrollAsyncButton
                     slug="async-self-paced"
-                    label="Enroll — Self-Paced →"
+                    label="Enroll — Self-Study →"
                   />
                 </div>
               </div>
@@ -180,7 +180,7 @@ export default function PricingPage() {
                   Refund window
                 </h3>
                 <p className="text-cream/80 leading-relaxed">
-                  Full refund within 7 days of cohort start. After Week 1, pro-rated. After Week 2, no refund — but you keep async access.
+                  Full refund within 7 days of cohort start. After Week 1, pro-rated. After Week 2, no refund — but you keep RAP Self-Study access.
                 </p>
               </div>
             </ScrollReveal>

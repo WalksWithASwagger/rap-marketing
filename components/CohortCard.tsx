@@ -40,9 +40,10 @@ export default function CohortCard({ cohort, index = 0 }: Props) {
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-10% 0px" }}
       transition={{ duration: 0.7, delay: index * 0.12, ease: EASE }}
-      className="group flex flex-col bg-forest-900/70 border border-forest-700 hover:border-cyan/60 rounded-2xl overflow-hidden transition-colors h-full"
+      style={{ contain: "paint" }}
+      className="group flex flex-col bg-forest-900/35 backdrop-blur-xl border border-cream/10 ring-1 ring-inset ring-cream/5 hover:border-cyan/60 rounded-2xl overflow-hidden transition-colors h-full shadow-[0_8px_32px_-4px_rgba(0,0,0,0.5),inset_0_1px_0_rgba(255,255,255,0.06)]"
     >
-      <div className="relative aspect-[4/3] overflow-hidden">
+      <div className="relative aspect-[3/2] overflow-hidden">
         <Image
           src={cohort.image}
           alt={`${cohort.label} — ${cohort.format}`}

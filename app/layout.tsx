@@ -7,9 +7,9 @@ import "./globals.css";
 import Nav from "@/components/Nav";
 import Footer from "@/components/Footer";
 import SmoothScroll from "@/components/SmoothScroll";
-import CursorAccent from "@/components/CursorAccent";
 import ScrollProgress from "@/components/ScrollProgress";
 import PageTransition from "@/components/PageTransition";
+import NoiseOverlay from "@/components/NoiseOverlay";
 
 const fraunces = Fraunces({
   subsets: ["latin"],
@@ -75,7 +75,7 @@ export default function RootLayout({
           </a>
           <SmoothScroll />
           <ScrollProgress />
-          <CursorAccent />
+          <NoiseOverlay />
           <Nav />
           <main id="main" className="flex-1">
             <PageTransition>{children}</PageTransition>

@@ -118,6 +118,29 @@ export default function InstructorsPage() {
             frameworks, run communities, and navigated exactly the tensions this program
             addresses. No academic detachment. No vendor agenda.
           </p>
+
+          {/* Group portrait placeholder — replace with <Image> once final photo lands */}
+          <div className="mt-14">
+            <div
+              style={{ contain: "paint" }}
+              className="relative aspect-[3/2] rounded-2xl overflow-hidden bg-forest-900/35 backdrop-blur-2xl border border-cream/10 ring-1 ring-inset ring-cream/5 shadow-[0_8px_32px_-4px_rgba(0,0,0,0.5),inset_0_1px_0_rgba(255,255,255,0.06)]"
+            >
+              <div className="absolute inset-0 flex flex-col items-center justify-center text-center px-6">
+                <p className="text-cyan text-[11px] font-semibold uppercase tracking-[0.3em] mb-6">
+                  Group portrait · coming soon
+                </p>
+                <p
+                  className="font-serif text-cream font-semibold leading-tight max-w-3xl"
+                  style={{ fontSize: "clamp(1.5rem, 3vw + 0.5rem, 3rem)" }}
+                >
+                  Kris Krüg · Martin Lopatka · Sarah Downey
+                </p>
+                <p className="mt-6 text-cream/55 text-xs tracking-wider">
+                  1800 × 1200 — landscape group portrait
+                </p>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
 

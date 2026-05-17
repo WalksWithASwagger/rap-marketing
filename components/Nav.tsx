@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { usePathname } from "next/navigation";
 import BcAiLogo from "./BcAiLogo";
 
@@ -21,10 +22,20 @@ export default function Nav() {
   return (
     <header className="sticky top-0 z-50 bg-forest-950/95 backdrop-blur-md border-b border-forest-700">
       <nav className="max-w-6xl mx-auto px-4 sm:px-6 flex items-center justify-between h-16">
-        {/* Logo — BC+AI | RAP */}
+        {/* Logo — BC+AI | [shield] RAP */}
         <Link href="/" className="flex items-center gap-3 group">
           <BcAiLogo width={52} className="opacity-90 group-hover:opacity-100 transition-opacity" />
           <span className="text-forest-600 text-lg font-light select-none">|</span>
+          <Image
+            src="/images/06c-frameworks-shield-quarters.png"
+            alt=""
+            width={56}
+            height={56}
+            sizes="56px"
+            priority
+            aria-hidden="true"
+            className="h-7 w-7 opacity-90 group-hover:opacity-100 transition-opacity"
+          />
           <span className="font-serif font-bold text-lg tracking-tight text-gold group-hover:text-yellow-300 transition-colors">
             RAP
           </span>

@@ -27,7 +27,7 @@ export default async function CourseLandingPage() {
         {hasAsync ? (
           <>
             <p className="text-cream/80 leading-relaxed mb-8">
-              You have access to the RAP Async Self-Paced Course. The course modules are being ported into this site — they&apos;ll appear here shortly. In the meantime your enrollment is locked in.
+              You have access to RAP Self-Study. The course modules are being ported into this site — they&apos;ll appear here shortly. In the meantime your enrollment is locked in.
             </p>
             <div className="bg-forest-900/60 border border-forest-700 rounded-2xl p-6">
               <p className="text-cream/60 text-sm font-mono">
@@ -48,7 +48,7 @@ export default async function CourseLandingPage() {
         ) : (
           <>
             <p className="text-cream/80 leading-relaxed mb-8">
-              You&apos;re signed in but haven&apos;t enrolled in the async course yet. Head to pricing to get started.
+              You&apos;re signed in but haven&apos;t enrolled in RAP Self-Study yet. Head to pricing to get started.
             </p>
             <Link
               href="/pricing"

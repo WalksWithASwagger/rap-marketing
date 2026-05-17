@@ -39,11 +39,11 @@ const faqs: FaqItem[] = [
   },
   {
     q: "How much time per week?",
-    a: "3–4 hours. Live Zoom is 90 minutes; the rest is async widgets and artifact work. Total over 4 weeks: 12–16 hours.",
+    a: "3–4 hours. Live Zoom is 90 minutes; the rest is between-session widgets and artifact work. Total over 4 weeks: 12–16 hours.",
   },
   {
     q: "What if I miss a session?",
-    a: "Recordings within 24 hours. Office hours every Friday for catch-up. The async work is self-paced.",
+    a: "Recordings within 24 hours. Office hours every Friday for catch-up. The between-session work is yours to schedule.",
   },
   {
     q: "Is the certification recognized?",
@@ -63,7 +63,7 @@ const faqs: FaqItem[] = [
   },
   {
     q: "Is there a refund policy?",
-    a: "Full refund within 7 days of cohort start. After Week 1, partial refund pro-rated. After Week 2, no refund — but you keep async access. (Final policy under review — contact us if it matters to your decision.)",
+    a: "Full refund within 7 days of cohort start. After Week 1, partial refund pro-rated. After Week 2, no refund — but you keep RAP Self-Study access. (Final policy under review — contact us if it matters to your decision.)",
   },
   {
     q: "Can my company pay?",

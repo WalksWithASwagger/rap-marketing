@@ -162,22 +162,27 @@ export default function Hero({
                 initial={reduced ? false : { opacity: 0, y: 16 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.7, delay: 0.75, ease: EASE }}
-                className="mt-9 flex flex-wrap gap-4"
+                className="mt-9"
               >
-                {cta && (
-                  <MagneticButton href={cta.href} external={cta.external} variant="primary">
-                    {cta.label}
-                  </MagneticButton>
-                )}
-                {ctaSecondary && (
-                  <MagneticButton
-                    href={ctaSecondary.href}
-                    external={ctaSecondary.external}
-                    variant="secondary"
-                  >
-                    {ctaSecondary.label}
-                  </MagneticButton>
-                )}
+                <div
+                  style={{ contain: "paint" }}
+                  className="inline-flex flex-wrap items-center gap-3 bg-forest-950/30 backdrop-blur-md border border-cream/10 rounded-2xl p-2 shadow-[0_8px_32px_-12px_rgba(0,0,0,0.6)]"
+                >
+                  {cta && (
+                    <MagneticButton href={cta.href} external={cta.external} variant="primary">
+                      {cta.label}
+                    </MagneticButton>
+                  )}
+                  {ctaSecondary && (
+                    <MagneticButton
+                      href={ctaSecondary.href}
+                      external={ctaSecondary.external}
+                      variant="secondary"
+                    >
+                      {ctaSecondary.label}
+                    </MagneticButton>
+                  )}
+                </div>
               </motion.div>
             )}
 

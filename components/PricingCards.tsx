@@ -44,10 +44,11 @@ interface CardProps {
 function Card({ title, eyebrow, priceKey, cohorts, emphasis }: CardProps) {
   return (
     <div
-      className={`rounded-2xl p-6 sm:p-7 border flex flex-col h-full ${
+      style={{ contain: "paint" }}
+      className={`rounded-2xl p-6 sm:p-7 border flex flex-col h-full backdrop-blur-2xl ring-1 ring-inset ring-cream/5 shadow-[0_8px_32px_-4px_rgba(0,0,0,0.5),inset_0_1px_0_rgba(255,255,255,0.06)] ${
         emphasis
-          ? "border-cyan/50 bg-cyan/[0.04] shadow-[0_0_40px_-20px_rgba(0,221,204,0.6)]"
-          : "border-forest-700 bg-forest-900/40"
+          ? "border-cyan/40 bg-cyan/[0.06]"
+          : "border-cream/10 bg-forest-900/35"
       }`}
     >
       <p
