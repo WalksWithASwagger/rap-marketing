@@ -178,13 +178,78 @@ Test mode first; flip the keys to live only after a dry-run purchase + a dry-run
 
 - ✅ Plan doc + price research
 - ✅ Clerk test keys provisioned in `.env.local`
-- ✅ Stripe products + prices created (live mode)
-- ✅ `BCAI50` coupon created with applies_to restriction
-- ⏳ Install `@clerk/nextjs` + `stripe` packages
-- ⏳ Wire `<ClerkProvider>` + sign-in routes into `app/layout.tsx`
-- ⏳ Build `app/api/stripe/checkout/route.ts` (creates Checkout Session)
-- ⏳ Build `app/api/stripe/webhook/route.ts` (writes entitlements to Clerk on `checkout.session.completed`)
-- ⏳ Hook async-course CTA on `/pricing` and `/enroll` to checkout
-- ⏳ Port `/Users/kk/Code/RAP/course/` static files into `app/(course)/`, Clerk-gated
-- ⏳ Stripe CLI webhook forwarding for local testing
-- ⏳ Dry-run purchase with a real Stripe test card → confirm Clerk entitlement set → confirm `/course/module-1` unlocks → refund → confirm entitlement revoked
+- ✅ Stripe products + prices created (LIVE mode, BC+AI account `acct_1S0B1xF2GLxOhIwJ`)
+- ✅ `BCAI50` coupon created with applies_to restriction (live + test, scoped to async product)
+- ✅ Test-mode catalog mirror created via Stripe CLI (overrides in `.env.local`)
+- ✅ Install `@clerk/nextjs` + `stripe` packages
+- ✅ Wire `<ClerkProvider>` + sign-in routes into `app/layout.tsx`
+- ✅ Build `app/api/stripe/checkout/route.ts`
+- ✅ Build `app/api/stripe/webhook/route.ts`
+- ✅ Hook RAP Self-Study CTA on `/pricing` to checkout
+- ✅ Stripe CLI webhook forwarding (local test) — used during dev
+- ✅ Production-URL test webhook endpoint registered (`we_1TYEctF2GLxOhIwJs0hwXL0M`, secret stored in vault outside repo)
+- ⏳ Port `/Users/kk/Code/RAP/course/` static files into `app/(course)/`, Clerk-gated (deferred to Phase 2)
+- ⏳ Dry-run purchase with a real Stripe test card → confirm Clerk entitlement set → confirm `/course` unlocks → refund → confirm entitlement revoked
+
+## Design pass status — 2026-05-16 (shipped, commit `d1c79ce`)
+
+- ✅ Public rename: "RAP Async Self-Paced Course" → "RAP Self-Study" across all marketing surfaces and both Stripe modes
+- ✅ "Async widgets" (cohort-homework descriptor) → "between-session widgets" / "self-directed widgets"
+- ✅ CursorAccent removed entirely
+- ✅ RAP shield in Nav as 28px logo lockup
+- ✅ Glass morphism on PricingCards, CohortCard, Hero CTA shelf
+- ✅ Single fixed `<NoiseOverlay>` global texture
+- ✅ Cohorts scroll-stop: Lenis duration tuned + Festival section `isolate` (suspects 1 + 2 applied; suspect 3 untouched pending feedback)
+- ✅ CohortCard aspect `4/3 → 3/2` to match DSLR sources
+- ✅ InstructorPortrait sticky height capped at `min(60vh, 520px)` on mobile
+- ✅ Group portrait placeholder on `/instructors`
+
+---
+
+## Tomorrow's punch list (2026-05-17 / next session)
+
+Pick up here. Everything in order, nothing has a hard dependency on me being the one to do it.
+
+### Blockers before real customers can buy
+
+1. **Re-authenticate Vercel CLI** — the earlier OAuth session was wiped. Either:
+   - Run `mcp__plugin_vercel_vercel__authenticate` and follow the OAuth URL, OR
+   - Run `vercel login` in terminal (browser-based OAuth, ~30 seconds).
+2. **Decide: test mode or live mode for production?**
+   - Test mode in prod = visitors can "complete" checkout but no real money moves. Bad for trust if launched as-is. Only acceptable as a private staging step.
+   - Live mode in prod = real charges. Requires live Stripe keys (`sk_live_…` / `pk_live_…`) which need to be pasted (MCP can't read raw API keys). Also requires creating a **live-mode** webhook endpoint pointed at `https://rap-marketing.vercel.app/api/stripe/webhook` and capturing its secret.
+3. **Push env vars to Vercel.** After (1) + (2):
+   - Development + Preview scopes: push the current `.env.local` test values so preview deploys work end-to-end.
+   - Production scope: push whichever set (test or live) the decision in (2) yields.
+   - The keys to push: `STRIPE_SECRET_KEY`, `NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY`, `STRIPE_WEBHOOK_SECRET`, the six `STRIPE_PRODUCT_*` / `STRIPE_PRICE_*` overrides (test-mode only — production scope drops these so the live defaults in `lib/stripe-catalog.ts` apply), and the six Clerk vars (test or live).
+4. **Switch Clerk to live keys before public launch.** Currently using `pk_test_` / `sk_test_`. Live keys come from the Clerk dashboard; user pastes when ready.
+5. **Real Stripe test purchase end-to-end** with the dev server + `stripe listen`, against the test catalog. Confirm `checkout.session.completed` → Clerk `publicMetadata.entitlements` populated → `/course` unlocks → refund revokes. Wasn't run during the Phase 1 build (only the static click-through was verified).
+
+### Site is currently in a known partial state
+
+- Live at `rap-marketing.vercel.app` with the design pass shipped.
+- `/pricing` has the new "Enroll — Self-Study" CTA, but Production scope has no Stripe env vars yet, so the API route will 500 if clicked. Pricing page itself renders fine; CTAs to Luma (cohorts) still work.
+- Cohort enrollment continues to go through Luma — Stripe is only for Self-Study + Coaching once the env push happens.
+
+### Design follow-ups (non-blocking)
+
+- Real headshots for Kris / Martin / Sarah on `/instructors`.
+- Group portrait file (1800×1200 landscape) to drop into the placeholder block on `/instructors`.
+- Decide on cohorts scroll-stop suspect 3 (ScrollReveal `rootMargin`) only if the scroll bug recurs after suspects 1+2 fixes.
+- `BCAI50` mirrored coupon in each Luma cohort event (manual, in Luma dashboard).
+- In-person cohort doc reconciliation at `/Users/kk/Code/RAP/cohorts/2026-cohort-2-october-inperson.md:30` ($1,500/$750 → $2,200/$900).
+
+### Stripe state recap (for tomorrow)
+
+| | Live (`acct_1S0B1xF2GLxOhIwJ`) | Test (same account) |
+|---|---|---|
+| Async product | `prod_UWnpSkjuzR7RIP` | `prod_UWpr4O92d7mPcU` |
+| Async price ($899) | `price_1TXkDyF2GLxOhIwJkP7NGssA` | `price_1TXmCaF2GLxOhIwJYGuOLM3w` |
+| Coaching 90-min product | `prod_UWnpKZAiFMax1H` | `prod_UWpsLUJS9J0OHO` |
+| Coaching 90-min price ($250) | `price_1TXkE3F2GLxOhIwJ2h20SHhD` | `price_1TXmCgF2GLxOhIwJPfM9LgCY` |
+| Coaching 4-pack product | `prod_UWnpICpwPHJgdY` | `prod_UWps7Z1PE5NYWV` |
+| Coaching 4-pack price ($900) | `price_1TXkECF2GLxOhIwJ0h0GYOBS` | `price_1TXmCnF2GLxOhIwJRIYLfawx` |
+| `BCAI50` coupon | yes, scoped to live async product | yes, scoped to test async product |
+| Webhook for `rap-marketing.vercel.app` | none yet (needs live-mode endpoint) | `we_1TYEctF2GLxOhIwJs0hwXL0M` (secret in dashboard) |
+
+Stripe CLI session: profile `bcai`, logged in to BC+AI account, test-mode keys valid until 2026-08-14.
