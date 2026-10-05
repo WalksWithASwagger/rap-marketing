@@ -1,3 +1,5 @@
+> **Archived 2026-10-04. This repo is read-only.** The RAP marketing site now lives in the kk-kb monorepo at [`apps/rap/web`](https://github.com/WalksWithASwagger/kk-kb/tree/main/apps/rap/web), and the Vercel project `rap-marketing` (rap-marketing.vercel.app) deploys from there. This repo's final tree is preserved byte-for-byte in kk-kb history (commit `ceca056`, under `apps/rap/`). Open issue #13 moved to [kk-kb#4442](https://github.com/WalksWithASwagger/kk-kb/issues/4442).
+
 # RAP Marketing Site
 
 The public-facing marketing site for the **Responsible AI Professional (RAP)** certification — a 4-week cohort program from BC + AI Ecosystem Association and TheUpgrade.
